@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đơn hàng</title>
+
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/don_hang.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- CHECK LOGIN -->
+    <script>
+      if (!localStorage.getItem("login") && !sessionStorage.getItem("login")) {
+        window.location.href = "dang_nhap.html";
+      }
+    </script>
+
+    <div class="container">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="logo">
+          <img src="../images/logo.jpg" />
+        </div>
+
+        <ul class="menu">
+          <li>
+            <a href="tong_quan.html">
+              <i class="fa fa-home"></i>
+              <span>Tổng quan</span>
+            </a>
+          </li>
+
+          <li class="active">
+            <a href="don_hang.html">
+              <i class="fa fa-file"></i>
+              <span>Quản lý đơn hàng</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="khach_hang.html">
+              <i class="fa fa-users"></i>
+              <span>Quản lý khách hàng</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="phuong_tien.html">
+              <i class="fa fa-truck"></i>
+              <span>Vận hành Đội xe</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="bao_cao.html">
+              <i class="fa fa-chart-line"></i>Báo cáo & Thống kê</a
+            >
+          </li>
+
+          <li><i class="fa fa-cog"></i><span>Cài đặt</span></li>
+        </ul>
+
+        <button class="logout">Đăng xuất</button>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- HEADER -->
+        <div class="header">
+          <h2>QUẢN LÝ ĐƠN VẬN CHUYỂN</h2>
+
+          <div class="header-right">
+            <i class="fa fa-bell"></i>
+
+            <div class="user">
+              <i class="fa fa-user-circle"></i>
+              <div class="user-info">
+                <span>Trương Anh Tuấn</span>
+                <small>Nhân viên điều phối</small>
+              </div>
+              <i class="fa fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOOLBAR -->
+        <div class="toolbar">
+          <h3>Danh sách đơn vận chuyển</h3>
+
+          <div class="toolbar-right">
+            <input type="text" placeholder="Tìm mã đơn, tên KH..." />
+
+            <select>
+              <option>Tất cả</option>
+              <option>Chờ xử lý</option>
+              <option>Đang vân chuyển</option>
+              <option>Hoàn thành</option>
+              <option>Đã hủy</option>
+            </select>
+
+            <button class="btn-add"><i class="fa fa-plus"></i> Tạo đơn</button>
+          </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-box">
+          <table>
+            <tr>
+              <th>Mã</th>
+              <th>Khách hàng</th>
+              <th>Điểm gửi</th>
+              <th>Điểm nhận</th>
+              <th>Trạng thái</th>
+              <th>Hành động</th>
+            </tr>
+
+            <tr>
+              <td>D01</td>
+              <td>Công ty TNHH A</td>
+              <td>TP.HCM</td>
+              <td>Hà Nội</td>
+              <td><span class="status delivering">Đang giao</span></td>
+              <td>
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-pen"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D02</td>
+              <td>Nguyễn Văn B</td>
+              <td>Hà Nội</td>
+              <td>Đà Nẵng</td>
+              <td><span class="status success">Hoàn thành</span></td>
+              <td>
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-pen"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D03</td>
+              <td>Công ty xây dựng Số 1</td>
+              <td>TP.HCM</td>
+              <td>Cần Thơ</td>
+              <td><span class="status pending">Chờ xử lý</span></td>
+              <td>
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-pen"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D04</td>
+              <td>Cửa hàng Vật Tư</td>
+              <td>Đà Nẵng</td>
+              <td>Hà Nội</td>
+              <td><span class="status cancel">Đã hủy</span></td>
+              <td>
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-pen"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D05</td>
+              <td>Công ty Minh Phát</td>
+              <td>Hồ Chí Minh</td>
+              <td>Hà Nội</td>
+              <td><span class="status delivering">Đang giao</span></td>
+              <td>
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-pen"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D06</td>
+              <td>Shop Điện Tử Hưng Thịnh</td>
+              <td>Đà Nẵng</td>
+              <td>Hồ Chí Minh</td>
+              <td><span class="status success">Đã giao</span></td>
+              <td>
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-pen"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D07</td>
+              <td>Kho Tổng Miền Bắc</td>
+              <td>Hà Nội</td>
+              <td>Hải Phòng</td>
+              <td><span class="status pending">Chờ xử lý</span></td>
+              <td>
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-pen"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D08</td>
+              <td>Cửa hàng Nội Thất An Khang</td>
+              <td>Huế</td>
+              <td>Đà Nẵng</td>
+              <td><span class="status delivering">Đang giao</span></td>
+              <td>
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-pen"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D09</td>
+              <td>Shop Thời Trang Bella</td>
+              <td>Hồ Chí Minh</td>
+              <td>Cần Thơ</td>
+              <td><span class="status success">Đã giao</span></td>
+              <td>
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-pen"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D10</td>
+              <td>Lê Hồ Thọ</td>
+              <td>Đà Nẵng</td>
+              <td>TP.HCM</td>
+              <td><span class="status cancel">Đã hủy</span></td>
+              <td>
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-pen"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D11</td>
+              <td>Nguyễn Võ Đức Dũng</td>
+              <td>Bình Định</td>
+              <td>TP. Hồ Chí Minh</td>
+              <td><span class="status success">Hoàn thành</span></td>
+              <td>
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-pen"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+            <tr>
+              <td>D12</td>
+              <td>Trần Hoàng Nam</td>
+              <td>Hải Phòng</td>
+              <td>Đà Lạt</td>
+              <td><span class="status pending">Chờ xử lý</span></td>
+              <td>
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-pen"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+            <tr>
+              <td>D13</td>
+              <td>Phạm Thị Tuyết</td>
+              <td>Cần Thơ</td>
+              <td>Hà Nội</td>
+              <td><span class="status success">Hoàn thành</span></td>
+              <td>
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-pen"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+            <tr>
+              <td>D14</td>
+              <td>Vũ Đình Trọng</td>
+              <td>Đà Nẵng</td>
+              <td>Nha Trang</td>
+              <td><span class="status cancel">Đã hủy</span></td>
+              <td>
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-pen"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </main>
+    </div>
+
+    <!-- LOGOUT SCRIPT -->
+    <script>
+      document.querySelector(".logout").onclick = function () {
+        localStorage.removeItem("login");
+        window.location.href = "dang_nhap.html";
+      };
+    </script>
+    <script>
+      const searchInput = document.querySelector(".toolbar-right input");
+
+      if (searchInput) {
+        searchInput.addEventListener("keyup", function () {
+          const keyword = this.value.toLowerCase();
+          const rows = document.querySelectorAll(".table-box table tr");
+
+          rows.forEach((row, index) => {
+            if (index === 0) return; // bỏ header
+
+            const text = row.innerText.toLowerCase();
+
+            row.style.display = text.includes(keyword) ? "" : "none";
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết đơn</title>
+
+    <link rel="stylesheet" href="./chi_tiet.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div class="header">
+      <i class="fa fa-arrow-left" onclick="history.back()"></i>
+      <span>Chi tiết đơn</span>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="container">
+      <!-- MÃ ĐƠN -->
+      <div class="card">
+        <h2>Mã đơn: D01</h2>
+      </div>
+
+      <!-- TUYẾN ĐƯỜNG -->
+      <div class="card">
+        <p><i class="fa fa-map-marker-alt"></i> TP.HCM</p>
+        <p class="arrow">đến ↓</p>
+        <p><i class="fa fa-map-marker"></i> Hà Nội</p>
+      </div>
+
+      <!-- KHÁCH HÀNG -->
+      <div class="card">
+        <p><i class="fa fa-user"></i> Khách hàng: Công ty A</p>
+        <p><i class="fa fa-phone"></i> 0901234567</p>
+      </div>
+
+      <!-- HÀNG -->
+      <div class="card">
+        <p><i class="fa fa-box"></i> Loại hàng: Điện tử</p>
+      </div>
+
+      <!-- TRẠNG THÁI -->
+      <div class="card">
+        <p>Trạng thái:</p>
+        <div class="status shipping">
+          <i class="fa fa-circle"></i> Đang vận chuyển
+        </div>
+        <small>Cập nhật: 10:30 AM</small>
+      </div>
+
+      <!-- BUTTON -->
+      <button class="btn-main" onclick="openModal()">
+        Cập nhật trạng thái
+      </button>
+    </div>
+    <!-- MODAL -->
+    <div id="statusModal" class="modal">
+      <div class="modal-content">
+        <h3>Chọn trạng thái</h3>
+
+        <div class="option shipping" onclick="updateStatus('Đang vận chuyển')">
+          🚚 Đang vận chuyển
+        </div>
+
+        <div class="option done" onclick="updateStatus('Đã giao hàng')">
+          📦 Đã giao hàng
+        </div>
+
+        <div class="option cancel" onclick="updateStatus('Hủy đơn')">
+          ❌ Hủy đơn
+        </div>
+      </div>
+    </div>
+    <script>
+      function openModal() {
+        document.getElementById("statusModal").style.display = "block";
+      }
+
+      function updateStatus(status) {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        // 👉 lưu
+        localStorage.setItem("status_" + id, status);
+
+        // 👉 update UI
+        const statusBox = document.querySelector(".status");
+
+        statusBox.innerHTML = "● " + status;
+        statusBox.className = "status";
+
+        if (status === "Đang vận chuyển") {
+          statusBox.classList.add("shipping");
+        } else if (status === "Đã giao hàng") {
+          statusBox.classList.add("done");
+        } else {
+          statusBox.classList.add("cancel");
+        }
+
+        document.getElementById("statusModal").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

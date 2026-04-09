@@ -1,0 +1,188 @@
+/* ================= LOGIN ================= */
+body {
+  height: 100vh;
+}
+
+.login-logo img {
+  width: 350px !important;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+/* LEFT */
+.left {
+  flex: 1;
+  position: relative;
+  background: url("../images/phong.jpg") no-repeat center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  padding: 60px;
+}
+
+.left::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+}
+
+.content-left {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.left h1 {
+  font-size: 42px;
+  color: #1f4f8a;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.left h1 span {
+  color: #f28c28;
+}
+
+.left p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+.left h3 {
+  margin-bottom: 10px;
+  color: #1f4f8a;
+}
+
+.left ul {
+  list-style: none;
+}
+
+.left li {
+  margin: 10px 0;
+  font-size: 15px;
+  color: #222;
+}
+
+.left i {
+  color: #1f4f8a;
+  margin-right: 10px;
+}
+
+/* RIGHT */
+.right {
+  width: 40%;
+  min-width: 500px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  width: 80%;
+  max-width: 420px;
+}
+
+.login-box h2 {
+  text-align: center;
+  color: #1f4f8a;
+  margin-bottom: 20px;
+}
+
+/* INPUT */
+.login-box label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.login-box input:focus {
+  border: 1px solid #1f4f8a;
+}
+.login-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* REMEMBER */
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.remember input {
+  width: auto;
+  margin: 0;
+}
+
+.remember label {
+  white-space: nowrap;
+}
+
+/* PASSWORD */
+.password-box {
+  position: relative;
+}
+
+.password-box input {
+  padding-right: 40px;
+}
+
+.password-box i {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #555;
+}
+
+.password-box i:hover {
+  color: #1f4f8a;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  /* Ẩn bên trái */
+  .left {
+    display: none;
+  }
+
+  /* Full màn hình bên phải */
+  .right {
+    width: 100%;
+    min-width: unset;
+    height: 100vh;
+    padding: 20px;
+  }
+
+  .login-box {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  /* Logo nhỏ lại */
+  .login-logo img {
+    width: 120px;
+  }
+
+  .login-box h2 {
+    font-size: 22px;
+  }
+}

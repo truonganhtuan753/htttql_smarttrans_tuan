@@ -1,0 +1,154 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f5f6fa;
+  margin: 0;
+}
+
+/* HEADER */
+.mobile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: white;
+  font-weight: bold;
+}
+
+.mobile-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: white;
+  z-index: 1000;
+}
+
+.bottom-nav {
+  height: 30px;
+  z-index: 1000;
+}
+.order-list {
+  margin-top: 120px;
+  margin-bottom: 70px;
+}
+.mobile-header {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.search-box {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #1f4f8a;
+  font-size: 18px;
+}
+.logo img {
+  width: 120px;
+  height: auto;
+}
+/* SEARCH */
+.search-box {
+  padding: 10px;
+}
+.search-box {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  background: #f5f6fa;
+  z-index: 999;
+}
+.search-box input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+/* LIST */
+.order-list {
+  padding: 10px;
+  margin-bottom: 60px;
+}
+
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* CARD */
+.order-card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.order-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* STATUS */
+.status {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.status.shipping {
+  color: #1f4f8a;
+}
+
+.status.done {
+  color: #28a745;
+}
+
+.status.pending {
+  color: #f39c12;
+}
+
+/* BUTTON */
+.btn {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn.green {
+  background: #28a745;
+}
+
+.btn.yellow {
+  background: #f39c12;
+}
+
+/* BOTTOM NAV */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav i {
+  font-size: 20px;
+  color: #999;
+}
+
+.bottom-nav .active {
+  color: #1f4f8a;
+}

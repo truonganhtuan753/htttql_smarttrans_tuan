@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartTrans Login</title>
+    <link rel="stylesheet" href="../css/dang_nhap.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <body class="login-page"></body>
+    <div class="container">
+      <!-- LEFT -->
+      <div class="left">
+        <div class="content-left">
+          <h1>
+            HỆ THỐNG QUẢN LÝ <br />
+            KHÁCH HÀNG & ĐƠN VẬN CHUYỂN <span>SmartTrans</span>
+          </h1>
+
+          <p>
+            Giải pháp toàn diện tối ưu hóa quy trình vận chuyển, theo dõi đơn
+            hàng và quản lý đội xe hiệu quả.
+          </p>
+
+          <h3>Một số ưu điểm:</h3>
+
+          <ul>
+            <li><i class="fa fa-gear"></i> Tăng năng suất làm việc</li>
+            <li>
+              <i class="fa fa-chart-line"></i> Kiểm soát chi phí vận chuyển
+            </li>
+            <li><i class="fa fa-thumbs-up"></i> Nâng cao chất lượng dịch vụ</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="right">
+        <div class="login-box">
+          <div class="login-logo">
+            <img src="../images/logo.jpg" />
+          </div>
+          <h2>ĐĂNG NHẬP</h2>
+
+          <label>Tên đăng nhập:</label>
+          <input type="text" id="username" />
+          <label>Mật khẩu:</label>
+
+          <div class="password-box">
+            <input type="password" id="password" />
+            <i class="fa fa-eye" id="togglePassword"></i>
+          </div>
+          <div class="remember">
+            <input type="checkbox" id="remember" />
+            <label for="remember">Ghi nhớ đăng nhập</label>
+          </div>
+
+          <button id="loginBtn">ĐĂNG NHẬP</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.getElementById("loginBtn").onclick = function () {
+        let user = document.getElementById("username").value;
+        let pass = document.getElementById("password").value;
+        let remember = document.getElementById("remember").checked;
+
+        if (user === "admin" && pass === "123") {
+          if (remember) {
+            localStorage.setItem("login", "true");
+          } else {
+            sessionStorage.setItem("login", "true");
+          }
+
+          window.location.href = "tong_quan.html";
+        } else {
+          alert("Sai tài khoản hoặc mật khẩu!");
+        }
+      };
+    </script>
+    <script>
+      const toggle = document.getElementById("togglePassword");
+      const password = document.getElementById("password");
+
+      toggle.onclick = function () {
+        if (password.type === "password") {
+          password.type = "text";
+          toggle.classList.remove("fa-eye");
+          toggle.classList.add("fa-eye-slash");
+        } else {
+          password.type = "password";
+          toggle.classList.remove("fa-eye-slash");
+          toggle.classList.add("fa-eye");
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tổng quan</title>
+    <link rel="stylesheet" href="../css/tong_quan.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <script>
+      if (!localStorage.getItem("login") && !sessionStorage.getItem("login")) {
+        window.location.href = "dang_nhap.html";
+      }
+    </script>
+    <div class="container">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="logo">
+          <img src="../images/logo.jpg" />
+        </div>
+
+        <ul class="menu">
+          <li class="active">
+            <a href="tong_quan.html">
+              <i class="fa fa-home"></i>
+              <span>Tổng quan</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="don_hang.html">
+              <i class="fa fa-file"></i>
+              <span>Quản lý đơn hàng</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="khach_hang.html">
+              <i class="fa fa-users"></i>
+              <span>Quản lý khách hàng</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="phuong_tien.html">
+              <i class="fa fa-truck"></i>
+              <span>Vận hành Đội xe</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="bao_cao.html">
+              <i class="fa fa-chart-line"></i>Báo cáo & Thống kê</a
+            >
+          </li>
+
+          <li><i class="fa fa-cog"></i><span>Cài đặt</span></li>
+        </ul>
+        <!-- ✅ ĐÓNG Ở ĐÂY -->
+
+        <button class="logout">Đăng xuất</button>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- HEADER -->
+        <div class="header">
+          <h2>BẢNG ĐIỀU KHIỂN TỔNG QUAN</h2>
+
+          <div class="header-right">
+            <input type="text" placeholder="Tìm kiếm..." />
+
+            <i class="fa fa-bell"></i>
+
+            <div class="user">
+              <i class="fa fa-user-circle"></i>
+              <div class="user-info">
+                <span>Trương Anh Tuấn</span>
+                <small>Nhân viên điều phối</small>
+              </div>
+              <i class="fa fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARDS -->
+        <h3 class="section-title">Thẻ thống kê</h3>
+        <div class="cards">
+          <div class="card">
+            <i class="fa fa-cart-shopping"></i>
+            <div>
+              <p>Tổng đơn hàng</p>
+              <h3>15,489 đơn</h3>
+              <span class="percent up">+8%</span> tháng này
+            </div>
+          </div>
+
+          <div class="card">
+            <i class="fa fa-money-bill"></i>
+            <div>
+              <p>Doanh thu</p>
+              <h3>1,890,500,000 VNĐ</h3>
+              <span class="percent up">+12%</span> tháng này
+            </div>
+          </div>
+
+          <div class="card">
+            <i class="fa fa-truck"></i>
+            <div>
+              <p>Đơn đang giao</p>
+              <h3>2,130 đơn</h3>
+            </div>
+          </div>
+
+          <div class="card">
+            <i class="fa fa-user"></i>
+            <div>
+              <p>Khách hàng mới</p>
+              <h3>68</h3>
+              <span class="percent up">+5%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHART -->
+        <h3 class="section-title">Biểu đồ</h3>
+        <div class="chart">
+          <canvas id="myChart"></canvas>
+        </div>
+
+        <!-- TABLE -->
+        <h3 class="section-title">Đơn hàng gần đây</h3>
+
+        <div class="table-box">
+          <table>
+            <tr>
+              <th>Mã đơn</th>
+              <th>Khách hàng</th>
+              <th>Nội dung hàng</th>
+              <th>Nơi đến</th>
+              <th>Trạng thái</th>
+              <th>Ngày tạo</th>
+              <th>Chi tiết</th>
+            </tr>
+
+            <tr>
+              <td>DH00123</td>
+              <td>Công ty ABC</td>
+              <td>Máy móc</td>
+              <td>TP.HCM</td>
+              <td><span class="status delivering">Đang giao</span></td>
+              <td>5/4/2026</td>
+              <td>
+                <button class="view-btn"><i class="fa fa-eye"></i> Xem</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>DH00122</td>
+              <td>Nguyễn Nam</td>
+              <td>Đồ gia dụng</td>
+              <td>Đà Nẵng</td>
+              <td><span class="status success">Đã giao</span></td>
+              <td>4/4/2026</td>
+              <td>
+                <button class="view-btn"><i class="fa fa-eye"></i> Xem</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>DH00121</td>
+              <td>Trương Hoài Anh Thư</td>
+              <td>Đồ gia dụng</td>
+              <td>Đà Nẵng</td>
+              <td><span class="status cancel">Đã hủy</span></td>
+              <td>3/4/2026</td>
+              <td>
+                <button class="view-btn"><i class="fa fa-eye"></i> Xem</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>DH00120</td>
+              <td>Công ty XYZ</td>
+              <td>Vật liệu XD</td>
+              <td>Hà Nội</td>
+              <td><span class="status pending">Chờ xử lý</span></td>
+              <td>2/4/2026</td>
+              <td>
+                <button class="view-btn"><i class="fa fa-eye"></i> Xem</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </main>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/chart.js"></script>
+  <script>
+    document.querySelector(".logout").onclick = function () {
+      localStorage.removeItem("login");
+      window.location.href = "dang_nhap.html";
+    };
+  </script>
+</html>

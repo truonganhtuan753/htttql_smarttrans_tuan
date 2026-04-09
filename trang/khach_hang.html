@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Khách hàng</title>
+
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/khach_hang.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- CHECK LOGIN -->
+    <script>
+      if (!localStorage.getItem("login") && !sessionStorage.getItem("login")) {
+        window.location.href = "dang_nhap.html";
+      }
+    </script>
+
+    <div class="container">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="logo">
+          <img src="../images/logo.jpg" />
+        </div>
+
+        <ul class="menu">
+          <li>
+            <a href="tong_quan.html">
+              <i class="fa fa-home"></i>
+              <span>Tổng quan</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="don_hang.html">
+              <i class="fa fa-box"></i>
+              <span>Quản lý đơn hàng</span>
+            </a>
+          </li>
+
+          <li class="active">
+            <a href="khach_hang.html">
+              <i class="fa fa-file"></i>
+              <span>Quản lý khách hàng</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="phuong_tien.html">
+              <i class="fa fa-truck"></i>
+              <span>Vận hành Đội xe</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="bao_cao.html">
+              <i class="fa fa-chart-line"></i>Báo cáo & Thống kê</a
+            >
+          </li>
+
+          <li><i class="fa fa-cog"></i><span>Cài đặt</span></li>
+        </ul>
+
+        <button class="logout">Đăng xuất</button>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- HEADER -->
+        <div class="header">
+          <h2>QUẢN LÝ KHÁCH HÀNG</h2>
+
+          <div class="header-right">
+            <i class="fa fa-bell"></i>
+
+            <div class="user">
+              <i class="fa fa-user-circle"></i>
+              <div class="user-info">
+                <span>Trương Anh Tuấn</span>
+                <small>Nhân viên điều phối</small>
+              </div>
+              <i class="fa fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOOLBAR -->
+        <div class="toolbar">
+          <h3>Danh sách khách hàng</h3>
+
+          <div class="toolbar-right">
+            <input type="text" placeholder="Tìm mã KH, tên hoặc SĐT..." />
+
+            <button class="btn-add">
+              <i class="fa fa-plus"></i> Thêm khách hàng
+            </button>
+          </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-box">
+          <table>
+            <thead>
+              <tr>
+                <th>Mã</th>
+                <th>Tên</th>
+                <th>SĐT</th>
+                <th>Địa chỉ</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>KH001</td>
+                <td>Công ty TNHH A</td>
+                <td>0901234567</td>
+                <td>TP.HCM</td>
+                <td>
+                  <button class="btn edit">
+                    <i class="fa fa-pen"></i> Sửa
+                  </button>
+                  <button class="btn delete">
+                    <i class="fa fa-trash"></i> Xóa
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td>KH002</td>
+                <td>Nguyễn Văn B</td>
+                <td>0912345678</td>
+                <td>Hà Nội</td>
+                <td>
+                  <button class="btn edit">
+                    <i class="fa fa-pen"></i> Sửa
+                  </button>
+                  <button class="btn delete">
+                    <i class="fa fa-trash"></i> Xóa
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td>KH003</td>
+                <td>Trần Thị C</td>
+                <td>0987654321</td>
+                <td>Đà Nẵng</td>
+                <td>
+                  <button class="btn edit">
+                    <i class="fa fa-pen"></i> Sửa
+                  </button>
+                  <button class="btn delete">
+                    <i class="fa fa-trash"></i> Xóa
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>KH004</td>
+                <td>Trần Văn D</td>
+                <td>0988123456</td>
+                <td>Đà Nẵng</td>
+                <td>
+                  <button class="btn edit">
+                    <i class="fa fa-pen"></i> Sửa
+                  </button>
+                  <button class="btn delete">
+                    <i class="fa fa-trash"></i> Xóa
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td>KH005</td>
+                <td>Lê Thị E</td>
+                <td>0977123456</td>
+                <td>Hải Phòng</td>
+                <td>
+                  <button class="btn edit">
+                    <i class="fa fa-pen"></i> Sửa
+                  </button>
+                  <button class="btn delete">
+                    <i class="fa fa-trash"></i> Xóa
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td>KH006</td>
+                <td>Phạm Văn F</td>
+                <td>0966123456</td>
+                <td>Cần Thơ</td>
+                <td>
+                  <button class="btn edit">
+                    <i class="fa fa-pen"></i> Sửa
+                  </button>
+                  <button class="btn delete">
+                    <i class="fa fa-trash"></i> Xóa
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td>KH007</td>
+                <td>Nguyễn Thị G</td>
+                <td>0977234567</td>
+                <td>Hải Phòng</td>
+                <td>
+                  <button class="btn edit">
+                    <i class="fa fa-pen"></i> Sửa
+                  </button>
+                  <button class="btn delete">
+                    <i class="fa fa-trash"></i> Xóa
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>KH008</td>
+                <td>Trần Hoàng H</td>
+                <td>0988345678</td>
+                <td>Đà Nẵng</td>
+                <td>
+                  <button class="btn edit">
+                    <i class="fa fa-pen"></i> Sửa
+                  </button>
+                  <button class="btn delete">
+                    <i class="fa fa-trash"></i> Xóa
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>KH009</td>
+                <td>Lê Văn I</td>
+                <td>0911456789</td>
+                <td>Huế</td>
+                <td>
+                  <button class="btn edit">
+                    <i class="fa fa-pen"></i> Sửa
+                  </button>
+                  <button class="btn delete">
+                    <i class="fa fa-trash"></i> Xóa
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>KH010</td>
+                <td>Hoàng Thu K</td>
+                <td>0944567890</td>
+                <td>Vũng Tàu</td>
+                <td>
+                  <button class="btn edit">
+                    <i class="fa fa-pen"></i> Sửa
+                  </button>
+                  <button class="btn delete">
+                    <i class="fa fa-trash"></i> Xóa
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>KH011</td>
+                <td>Đỗ Minh L</td>
+                <td>0933678901</td>
+                <td>Nha Trang</td>
+                <td>
+                  <button class="btn edit">
+                    <i class="fa fa-pen"></i> Sửa
+                  </button>
+                  <button class="btn delete">
+                    <i class="fa fa-trash"></i> Xóa
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>KH012</td>
+                <td>Vũ Phương M</td>
+                <td>0900789012</td>
+                <td>Đà Lạt</td>
+                <td>
+                  <button class="btn edit">
+                    <i class="fa fa-pen"></i> Sửa
+                  </button>
+                  <button class="btn delete">
+                    <i class="fa fa-trash"></i> Xóa
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <!-- LOGOUT SCRIPT -->
+    <script>
+      document.querySelector(".logout").onclick = function () {
+        localStorage.removeItem("login");
+        window.location.href = "dang_nhap.html";
+      };
+    </script>
+    <script>
+      const searchInput = document.querySelector(".toolbar-right input");
+
+      if (searchInput) {
+        searchInput.addEventListener("keyup", function () {
+          const keyword = this.value.toLowerCase();
+          const rows = document.querySelectorAll("tbody tr");
+
+          rows.forEach((row) => {
+            const text = row.innerText.toLowerCase();
+            row.style.display = text.includes(keyword) ? "" : "none";
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

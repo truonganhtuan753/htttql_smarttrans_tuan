@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh sách đơn tài xế</title>
+
+    <link rel="stylesheet" href="./dsdon_tx.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div class="mobile-header">
+      <div class="logo">
+        <img src="../images/logo.jpg" />
+      </div>
+      <i class="fa fa-bell"></i>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-box">
+      <input type="text" placeholder="Tìm mã đơn..." />
+    </div>
+
+    <!-- DANH SÁCH -->
+    <div class="order-list">
+      <!-- D01 -->
+      <div class="order-card" data-id="D01">
+        <div class="order-title">
+          <i class="fa fa-truck"></i>
+          <span>Đơn: D01</span>
+        </div>
+        <p>TP.HCM → Hà Nội</p>
+        <div class="status shipping">
+          <i class="fa fa-circle"></i> Đang vận chuyển
+        </div>
+        <a href="chi_tiet.html?id=D01">
+          <button class="btn green">Xem chi tiết</button>
+        </a>
+      </div>
+
+      <!-- D02 -->
+      <div class="order-card">
+        <div class="order-title">
+          <i class="fa fa-truck"></i>
+          <span>Đơn: D02</span>
+        </div>
+        <p>Hà Nội → Đà Nẵng</p>
+        <div class="status done">
+          <i class="fa fa-check-circle"></i> Hoàn thành
+        </div>
+        <button class="btn green">Xem chi tiết</button>
+      </div>
+
+      <!-- D03 -->
+      <div class="order-card">
+        <div class="order-title">
+          <i class="fa fa-truck"></i>
+          <span>Đơn: D03</span>
+        </div>
+        <p>TP.HCM → Cần Thơ</p>
+        <div class="status pending">
+          <i class="fa fa-hourglass-half"></i> Chờ xử lý
+        </div>
+        <button class="btn yellow">Xem chi tiết</button>
+      </div>
+
+      <!-- D04 -->
+      <div class="order-card">
+        <div class="order-title">
+          <i class="fa fa-truck"></i>
+          <span>Đơn: D04</span>
+        </div>
+        <p>Đà Nẵng → Hà Nội</p>
+        <div class="status pending">
+          <i class="fa fa-hourglass-half"></i> Chờ xử lý
+        </div>
+        <button class="btn yellow">Xem chi tiết</button>
+      </div>
+
+      <!-- D05 -->
+      <div class="order-card">
+        <div class="order-title">
+          <i class="fa fa-truck"></i>
+          <span>Đơn: D05</span>
+        </div>
+        <p>TP.HCM → Hải Phòng</p>
+        <div class="status shipping">
+          <i class="fa fa-circle"></i> Đang vận chuyển
+        </div>
+        <button class="btn green">Xem chi tiết</button>
+      </div>
+
+      <!-- D06 -->
+      <div class="order-card">
+        <div class="order-title">
+          <i class="fa fa-truck"></i>
+          <span>Đơn: D06</span>
+        </div>
+        <p>Hà Nội → Cần Thơ</p>
+        <div class="status done">
+          <i class="fa fa-check-circle"></i> Hoàn thành
+        </div>
+        <button class="btn green">Xem chi tiết</button>
+      </div>
+
+      <!-- D07 -->
+      <div class="order-card">
+        <div class="order-title">
+          <i class="fa fa-truck"></i>
+          <span>Đơn: D07</span>
+        </div>
+        <p>Hải Phòng → Đà Nẵng</p>
+        <div class="status pending">
+          <i class="fa fa-hourglass-half"></i> Chờ xử lý
+        </div>
+        <button class="btn yellow">Xem chi tiết</button>
+      </div>
+
+      <!-- D08 -->
+      <div class="order-card">
+        <div class="order-title">
+          <i class="fa fa-truck"></i>
+          <span>Đơn: D08</span>
+        </div>
+        <p>Cần Thơ → TP.HCM</p>
+        <div class="status shipping">
+          <i class="fa fa-circle"></i> Đang vận chuyển
+        </div>
+        <button class="btn green">Xem chi tiết</button>
+      </div>
+    </div>
+    <!-- BOTTOM NAV -->
+    <div class="bottom-nav">
+      <i class="fa fa-home"></i>
+      <i class="fa fa-truck active"></i>
+      <i class="fa fa-user"></i>
+
+      <script>
+        function goDetail() {
+          window.location.href = "chi_tiet.html";
+        }
+      </script>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".order-card").forEach((card) => {
+          const id = card.getAttribute("data-id");
+          const saved = localStorage.getItem("status_" + id);
+
+          if (saved) {
+            const statusEl = card.querySelector(".status");
+
+            statusEl.innerHTML = "● " + saved;
+            statusEl.className = "status";
+
+            if (saved === "Đang vận chuyển") {
+              statusEl.classList.add("shipping");
+            } else if (saved === "Đã giao hàng") {
+              statusEl.classList.add("done");
+            } else {
+              statusEl.classList.add("cancel");
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

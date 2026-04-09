@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Báo cáo & Thống kê</title>
+
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/bao_cao.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- CHECK LOGIN -->
+    <script>
+      if (!localStorage.getItem("login") && !sessionStorage.getItem("login")) {
+        window.location.href = "dang_nhap.html";
+      }
+    </script>
+
+    <div class="container">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="logo">
+          <img src="../images/logo.jpg" />
+        </div>
+
+        <ul class="menu">
+          <li>
+            <a href="tong_quan.html">
+              <i class="fa fa-home"></i>
+              <span>Tổng quan</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="don_hang.html">
+              <i class="fa fa-box"></i>
+              <span>Quản lý đơn hàng</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="khach_hang.html">
+              <i class="fa fa-users"></i>
+              <span>Quản lý khách hàng</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="phuong_tien.html">
+              <i class="fa fa-truck"></i>
+              <span>Vận hành Đội xe</span>
+            </a>
+          </li>
+
+          <!-- ACTIVE -->
+          <li class="active">
+            <a href="bao_cao.html">
+              <i class="fa fa-chart-line"></i>
+              <span>Báo cáo & Thống kê</span>
+            </a>
+          </li>
+
+          <li>
+            <i class="fa fa-cog"></i>
+            <span>Cài đặt</span>
+          </li>
+        </ul>
+
+        <button class="logout">Đăng xuất</button>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- HEADER -->
+        <div class="header">
+          <h2>BÁO CÁO & THỐNG KÊ</h2>
+
+          <div class="header-right">
+            <i class="fa fa-bell"></i>
+
+            <div class="user">
+              <i class="fa fa-user-circle"></i>
+              <div class="user-info">
+                <span>Trương Anh Tuấn</span>
+                <small>Nhân viên điều phối</small>
+              </div>
+              <i class="fa fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== 1. BỘ LỌC ===== -->
+        <div class="filter-box">
+          <!-- TỪ NGÀY -->
+          <div class="filter-item">
+            <label>Từ ngày</label>
+            <input type="date" />
+          </div>
+
+          <!-- ĐẾN NGÀY -->
+          <div class="filter-item">
+            <label>Đến ngày</label>
+            <input type="date" />
+          </div>
+
+          <!-- TRẠNG THÁI -->
+          <div class="filter-item">
+            <label>Trạng thái</label>
+            <select>
+              <option>Tất cả</option>
+              <option>Chờ xử lý</option>
+              <option>Đã phân công</option>
+              <option>Đang vận chuyển</option>
+              <option>Đã giao hàng</option>
+              <option>Đã hoàn thành</option>
+              <option>Đã hủy</option>
+            </select>
+          </div>
+
+          <!-- LOẠI BÁO CÁO -->
+          <div class="filter-item">
+            <label>Loại báo cáo</label>
+            <select>
+              <option>Báo cáo doanh thu</option>
+              <option>Báo cáo đơn vận chuyển</option>
+              <option>Báo cáo khách hàng</option>
+              <option>Báo cáo hoạt động vận tải</option>
+            </select>
+          </div>
+
+          <!-- BUTTON -->
+          <button class="btn-filter">Lọc</button>
+        </div>
+
+        <!-- ===== 2. CARDS ===== -->
+        <div class="cards">
+          <div class="card">
+            <p>Tổng đơn</p>
+            <h3>120</h3>
+          </div>
+
+          <div class="card">
+            <p>Đang vận chuyển</p>
+            <h3>45</h3>
+          </div>
+
+          <div class="card">
+            <p>Hoàn thành</p>
+            <h3>60</h3>
+          </div>
+
+          <div class="card">
+            <p>Doanh thu</p>
+            <h3>50,000,000đ</h3>
+          </div>
+        </div>
+
+        <!-- ===== 3. BIỂU ĐỒ ===== -->
+        <div class="charts">
+          <!-- BIỂU ĐỒ CHÍNH -->
+          <div class="chart-box">
+            <h3>Doanh thu theo thời gian</h3>
+            <canvas id="mainChart"></canvas>
+          </div>
+
+          <!-- BIỂU ĐỒ PHỤ -->
+          <div class="chart-box">
+            <h3>Trạng thái đơn hàng</h3>
+            <canvas id="pieChart"></canvas>
+          </div>
+        </div>
+
+        <!-- ===== 4. BẢNG ===== -->
+        <div class="table-box">
+          <div class="table-header">
+            <h3>Danh sách đơn hàng</h3>
+        
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Tìm tên khách..."
+            />
+          </div>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Mã đơn</th>
+                <th>Khách</th>
+                <th>Trạng thái</th>
+                <th>Ngày</th>
+                <th>Số tiền</th>
+              </tr>
+            </thead>
+        
+            <tbody id="orderTable">
+              <tr>
+                <td>D01</td>
+                <td>Khách A</td>
+                <td><span class="status shipping">Đang vận chuyển</span></td>
+                <td>05/10/2023</td>
+                <td>1,000,000</td>
+              </tr>
+        
+              <tr>
+                <td>D02</td>
+                <td>Khách B</td>
+                <td><span class="status done">Hoàn thành</span></td>
+                <td>12/10/2023</td>
+                <td>2,000,000</td>
+              </tr>
+        
+              <tr>
+                <td>D03</td>
+                <td>Khách C</td>
+                <td><span class="status shipping">Đang vận chuyển</span></td>
+                <td>15/10/2023</td>
+                <td>1,500,000</td>
+              </tr>
+        
+              <tr>
+                <td>D04</td>
+                <td>Khách D</td>
+                <td><span class="status pending">Chờ xử lý</span></td>
+                <td>18/10/2023</td>
+                <td>800,000</td>
+              </tr>
+        
+              <tr>
+                <td>D05</td>
+                <td>Khách E</td>
+                <td><span class="status done">Hoàn thành</span></td>
+                <td>20/10/2023</td>
+                <td>3,200,000</td>
+              </tr>
+        
+              <tr>
+                <td>D06</td>
+                <td>Khách F</td>
+                <td><span class="status assigned">Đã phân công</span></td>
+                <td>21/10/2023</td>
+                <td>1,200,000</td>
+              </tr>
+        
+              <tr>
+                <td>D07</td>
+                <td>Khách G</td>
+                <td><span class="status shipping">Đang vận chuyển</span></td>
+                <td>22/10/2023</td>
+                <td>2,700,000</td>
+              </tr>
+        
+              <tr>
+                <td>D08</td>
+                <td>Khách H</td>
+                <td><span class="status done">Hoàn thành</span></td>
+                <td>25/10/2023</td>
+                <td>4,000,000</td>
+              </tr>
+        
+              <tr>
+                <td>D09</td>
+                <td>Khách I</td>
+                <td><span class="status cancel">Đã hủy</span></td>
+                <td>27/10/2023</td>
+                <td>500,000</td>
+              </tr>
+        
+              <tr>
+                <td>D10</td>
+                <td>Khách K</td>
+                <td><span class="status shipping">Đang vận chuyển</span></td>
+                <td>30/10/2023</td>
+                <td>2,100,000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    <!-- LOGOUT -->
+    <script>
+      document.querySelector(".logout").onclick = function () {
+        localStorage.removeItem("login");
+        window.location.href = "dang_nhap.html";
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/chart.js"></script>
+  </body>
+</html>
