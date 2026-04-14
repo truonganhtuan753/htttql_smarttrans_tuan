@@ -1,3 +1,88 @@
-<script>
-  window.location.href = "trang/dang_nhap.html";
-</script>
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartTrans System</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        background: white;
+        padding: 50px;
+        border-radius: 20px;
+        text-align: center;
+        width: 400px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        margin-bottom: 15px;
+        color: #1e3c72;
+      }
+
+      p {
+        margin-bottom: 30px;
+        color: #666;
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        margin: 15px 0;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      .admin {
+        background: #1e3c72;
+        color: white;
+      }
+
+      .driver {
+        background: #28a745;
+        color: white;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>SMARTTRANS SYSTEM</h1>
+      <p>Chọn giao diện bạn muốn truy cập</p>
+
+      <a href="trang/dang_nhap.html" class="btn admin">
+        Vào hệ thống quản lý
+      </a>
+
+      <a href="mobile/dsdon_tx.html" class="btn driver">
+        Vào giao diện tài xế
+      </a>
+    </div>
+  </body>
+</html>
