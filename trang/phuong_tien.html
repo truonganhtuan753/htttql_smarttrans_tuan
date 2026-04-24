@@ -76,11 +76,13 @@
                 <span>Trương Anh Tuấn</span>
                 <small>Nhân viên điều phối</small>
               </div>
+              <i class="fa fa-chevron-down"></i>
             </div>
           </div>
         </div>
 
         <!-- TOP BAR -->
+
         <div class="top-bar">
           <div class="tabs">
             <span class="tab active" onclick="showTab('xe')">Xe</span>
@@ -101,6 +103,8 @@
 
         <!-- TAB XE -->
         <div id="xe" class="tab-content active">
+          <h3>Danh sách xe</h3>
+          <!-- 🔥 thêm -->
           <div class="table-box">
             <table>
               <tr>
@@ -258,6 +262,8 @@
 
         <!-- TAB TÀI XẾ -->
         <div id="taixe" class="tab-content">
+          <h3>Danh sách tài xế</h3>
+          <!-- 🔥 thêm -->
           <div class="table-box">
             <table>
               <tr>
@@ -538,6 +544,270 @@
           });
         });
       }
+    </script>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">×</span>
+
+        <h3 id="modalTitle">Thêm phương tiện</h3>
+
+        <label>Mã (tự động)</label>
+        <input id="f_id" disabled />
+
+        <label>Biển số</label>
+        <input id="f1" />
+
+        <label>Loại xe</label>
+        <input id="f2" />
+
+        <label>Tải trọng</label>
+        <input id="f3" />
+
+        <button onclick="saveItem()">Lưu</button>
+      </div>
+    </div>
+    <script>
+      const modal = document.getElementById("modal");
+
+      document.getElementById("addBtn").onclick = function () {
+        const active = document.querySelector(".tab.active").innerText;
+
+        if (active === "Xe") {
+          document.getElementById("modal").style.display = "block";
+        } else {
+          openDriverModal();
+        }
+      };
+
+      function closeModal() {
+        modal.style.display = "none";
+      }
+
+      function saveItem() {
+        let f1 = document.getElementById("f1").value;
+        let f2 = document.getElementById("f2").value;
+        let f3 = document.getElementById("f3").value;
+
+        let table = document.querySelector("#xe table");
+
+        if (window.editRow) {
+          let cols = window.editRow.querySelectorAll("td");
+
+          cols[1].innerText = f1;
+          cols[2].innerText = f2;
+          cols[3].innerText = f3;
+
+          window.editRow = null;
+        } else {
+          let id = "X" + String(table.rows.length).padStart(2, "0");
+
+          let row = table.insertRow(-1);
+
+          row.innerHTML = `
+      <td>${id}</td>
+      <td>${f1}</td>
+      <td>${f2}</td>
+      <td>${f3}</td>
+      <td>
+        <button class="btn edit"><i class="fa fa-pen"></i> Sửa</button>
+        <button class="btn delete"><i class="fa fa-trash"></i> Xóa</button>
+      </td>
+    `;
+        }
+
+        closeModal();
+        setTimeout(() => {
+          attachVehicleEvents();
+        }, 0);
+      }
+      function closeDriverModal() {
+        document.getElementById("driverModal").style.display = "none";
+
+        document.getElementById("d_name").value = "";
+        document.getElementById("d_phone").value = "";
+        document.getElementById("d_license").value = "";
+      }
+      document.querySelectorAll(".delete").forEach((btn) => {
+        btn.onclick = function () {
+          if (confirm("Xóa?")) {
+            this.closest("tr").remove();
+          }
+        };
+      });
+
+      document.querySelectorAll("#taixe .delete").forEach((btn) => {
+        btn.onclick = function () {
+          if (confirm("Xóa tài xế?")) {
+            this.closest("tr").remove();
+          }
+        };
+      });
+
+      document.querySelectorAll("#xe .edit").forEach((btn) => {
+        btn.onclick = function () {
+          let row = this.closest("tr");
+          let cols = row.querySelectorAll("td");
+
+          document.getElementById("modal").style.display = "block";
+
+          document.getElementById("f_id").value = cols[0].innerText;
+          document.getElementById("f1").value = cols[1].innerText;
+          document.getElementById("f2").value = cols[2].innerText;
+          document.getElementById("f3").value = cols[3].innerText;
+
+          window.editRow = row;
+        };
+      });
+
+      document.querySelectorAll("#taixe .edit").forEach((btn) => {
+        btn.onclick = function () {
+          let row = this.closest("tr");
+          let cols = row.querySelectorAll("td");
+
+          document.getElementById("driverModal").style.display = "block";
+          document.getElementById("driverModalTitle").innerText = "Sửa tài xế";
+
+          document.getElementById("d_id").value = cols[0].innerText;
+          document.getElementById("d_name").value = cols[1].innerText;
+          document.getElementById("d_phone").value = cols[2].innerText;
+          document.getElementById("d_license").value = cols[3].innerText;
+
+          window.editDriverRow = row;
+        };
+      });
+      function openDriverModal() {
+        document.getElementById("driverModal").style.display = "block";
+        document.getElementById("driverModalTitle").innerText = "Thêm tài xế";
+
+        document.getElementById("d_id").value = "";
+        document.getElementById("d_name").value = "";
+        document.getElementById("d_phone").value = "";
+        document.getElementById("d_license").value = "";
+
+        window.editDriverRow = null;
+      }
+
+      function saveDriver() {
+        let name = document.getElementById("d_name").value;
+        let phone = document.getElementById("d_phone").value;
+        let license = document.getElementById("d_license").value;
+
+        let table = document.querySelector("#taixe table");
+
+        // SỬA
+        if (window.editDriverRow) {
+          let cols = window.editDriverRow.querySelectorAll("td");
+
+          cols[1].innerText = name;
+          cols[2].innerText = phone;
+          cols[3].innerText = license;
+
+          window.editDriverRow = null;
+        }
+        // THÊM
+        else {
+          let newId = "TX" + String(table.rows.length).padStart(2, "0");
+
+          let row = table.insertRow(-1);
+
+          row.innerHTML = `
+      <td>${newId}</td>
+      <td>${name}</td>
+      <td>${phone}</td>
+      <td>${license}</td>
+      <td>
+        <button class="btn edit"><i class="fa fa-pen"></i> Sửa</button>
+        <button class="btn delete"><i class="fa fa-trash"></i> Xóa</button>
+      </td>
+    `;
+        }
+
+        closeDriverModal();
+
+        setTimeout(() => {
+          attachDriverEvents();
+        }, 0);
+      }
+
+      function attachDriverEvents() {
+        document.querySelectorAll("#taixe .edit").forEach((btn) => {
+          btn.onclick = function () {
+            let row = this.closest("tr");
+            let cols = row.querySelectorAll("td");
+
+            document.getElementById("driverModal").style.display = "block";
+
+            document.getElementById("d_id").value = cols[0].innerText;
+            document.getElementById("d_name").value = cols[1].innerText;
+            document.getElementById("d_phone").value = cols[2].innerText;
+            document.getElementById("d_license").value = cols[3].innerText;
+
+            window.editDriverRow = row;
+          };
+        });
+
+        document.querySelectorAll("#taixe .delete").forEach((btn) => {
+          btn.onclick = function () {
+            if (confirm("Xóa tài xế?")) {
+              this.closest("tr").remove();
+            }
+          };
+        });
+      }
+
+      function closeDriverModal() {
+        document.getElementById("driverModal").style.display = "none";
+      }
+      attachDriverEvents();
+    </script>
+    <div id="driverModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeDriverModal()">×</span>
+
+        <h3 id="driverModalTitle">Thêm tài xế</h3>
+
+        <label>Mã (tự động)</label>
+        <input id="d_id" disabled />
+
+        <label>Tên tài xế</label>
+        <input id="d_name" />
+
+        <label>SĐT</label>
+        <input id="d_phone" />
+
+        <label>Bằng lái</label>
+        <input id="d_license" />
+
+        <button onclick="saveDriver()">Lưu</button>
+      </div>
+    </div>
+    <script>
+      function attachVehicleEvents() {
+        document.querySelectorAll("#xe .edit").forEach((btn) => {
+          btn.onclick = function () {
+            let row = this.closest("tr");
+            let cols = row.querySelectorAll("td");
+
+            document.getElementById("modal").style.display = "block";
+
+            document.getElementById("f_id").value = cols[0].innerText;
+            document.getElementById("f1").value = cols[1].innerText;
+            document.getElementById("f2").value = cols[2].innerText;
+            document.getElementById("f3").value = cols[3].innerText;
+
+            window.editRow = row;
+          };
+        });
+
+        document.querySelectorAll("#xe .delete").forEach((btn) => {
+          btn.onclick = function () {
+            if (confirm("Xóa xe?")) {
+              this.closest("tr").remove();
+            }
+          };
+        });
+      }
+      attachVehicleEvents();
     </script>
   </body>
 </html>

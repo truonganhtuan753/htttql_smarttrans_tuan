@@ -37,9 +37,24 @@ body {
 }
 
 /* STATUS */
+.status.pending {
+  color: orange;
+}
+
+.status.received {
+  color: #3498db;
+}
+
 .status.shipping {
   color: #1f4f8a;
-  font-weight: bold;
+}
+
+.status.done {
+  color: green;
+}
+
+.status.cancel {
+  color: red;
 }
 
 /* BUTTON */
@@ -68,20 +83,77 @@ body {
 
 /* khung */
 .modal-content {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  position: relative;
   background: white;
-  border-radius: 20px 20px 0 0;
-  padding: 20px;
+  width: 85%;
+  max-width: 350px;
+  margin: 120px auto;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.close-btn {
+  position: absolute;
+  top: -5px;
+  right: 0;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ff4d4f;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background: #ffe5e5;
+}
+
+.option.active {
+  background: #28a745;
+  border: 2px solid #28a745;
+  color: white !important;
+  font-weight: bold;
+  opacity: 1;
+}
+
+#confirmBtn {
+  width: 100%;
+  padding: 12px;
+  background: #1f4f8a;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+#confirmBtn:disabled {
+  background: gray;
 }
 
 /* option */
 .option {
-  padding: 12px;
-  margin: 8px 0;
-  border-radius: 10px;
-  text-align: center;
-  font-weight: bold;
+  padding: 14px;
+  margin: 12px 0;
+  border: 2px solid #ddd;
+  border-radius: 12px;
   cursor: pointer;
+  text-align: center;
+  font-weight: 600;
+  background: white;
+  color: black;
+  transition: 0.3s;
+}
+
+.option:hover:not(.active) {
+  background: #f5f5f5;
+  transform: scale(1.02);
 }

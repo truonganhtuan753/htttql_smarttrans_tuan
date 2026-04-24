@@ -96,8 +96,8 @@
           <div class="toolbar-right">
             <input type="text" placeholder="Tìm mã KH, tên hoặc SĐT..." />
 
-            <button class="btn-add">
-              <i class="fa fa-plus"></i> Thêm khách hàng
+            <button class="btn-add" onclick="openAddCustomer()">
+              + Thêm khách hàng
             </button>
           </div>
         </div>
@@ -115,181 +115,7 @@
               </tr>
             </thead>
 
-            <tbody>
-              <tr>
-                <td>KH001</td>
-                <td>Công ty TNHH A</td>
-                <td>0901234567</td>
-                <td>TP.HCM</td>
-                <td>
-                  <button class="btn edit">
-                    <i class="fa fa-pen"></i> Sửa
-                  </button>
-                  <button class="btn delete">
-                    <i class="fa fa-trash"></i> Xóa
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td>KH002</td>
-                <td>Nguyễn Văn B</td>
-                <td>0912345678</td>
-                <td>Hà Nội</td>
-                <td>
-                  <button class="btn edit">
-                    <i class="fa fa-pen"></i> Sửa
-                  </button>
-                  <button class="btn delete">
-                    <i class="fa fa-trash"></i> Xóa
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td>KH003</td>
-                <td>Trần Thị C</td>
-                <td>0987654321</td>
-                <td>Đà Nẵng</td>
-                <td>
-                  <button class="btn edit">
-                    <i class="fa fa-pen"></i> Sửa
-                  </button>
-                  <button class="btn delete">
-                    <i class="fa fa-trash"></i> Xóa
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH004</td>
-                <td>Trần Văn D</td>
-                <td>0988123456</td>
-                <td>Đà Nẵng</td>
-                <td>
-                  <button class="btn edit">
-                    <i class="fa fa-pen"></i> Sửa
-                  </button>
-                  <button class="btn delete">
-                    <i class="fa fa-trash"></i> Xóa
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td>KH005</td>
-                <td>Lê Thị E</td>
-                <td>0977123456</td>
-                <td>Hải Phòng</td>
-                <td>
-                  <button class="btn edit">
-                    <i class="fa fa-pen"></i> Sửa
-                  </button>
-                  <button class="btn delete">
-                    <i class="fa fa-trash"></i> Xóa
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td>KH006</td>
-                <td>Phạm Văn F</td>
-                <td>0966123456</td>
-                <td>Cần Thơ</td>
-                <td>
-                  <button class="btn edit">
-                    <i class="fa fa-pen"></i> Sửa
-                  </button>
-                  <button class="btn delete">
-                    <i class="fa fa-trash"></i> Xóa
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td>KH007</td>
-                <td>Nguyễn Thị G</td>
-                <td>0977234567</td>
-                <td>Hải Phòng</td>
-                <td>
-                  <button class="btn edit">
-                    <i class="fa fa-pen"></i> Sửa
-                  </button>
-                  <button class="btn delete">
-                    <i class="fa fa-trash"></i> Xóa
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH008</td>
-                <td>Trần Hoàng H</td>
-                <td>0988345678</td>
-                <td>Đà Nẵng</td>
-                <td>
-                  <button class="btn edit">
-                    <i class="fa fa-pen"></i> Sửa
-                  </button>
-                  <button class="btn delete">
-                    <i class="fa fa-trash"></i> Xóa
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH009</td>
-                <td>Lê Văn I</td>
-                <td>0911456789</td>
-                <td>Huế</td>
-                <td>
-                  <button class="btn edit">
-                    <i class="fa fa-pen"></i> Sửa
-                  </button>
-                  <button class="btn delete">
-                    <i class="fa fa-trash"></i> Xóa
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH010</td>
-                <td>Hoàng Thu K</td>
-                <td>0944567890</td>
-                <td>Vũng Tàu</td>
-                <td>
-                  <button class="btn edit">
-                    <i class="fa fa-pen"></i> Sửa
-                  </button>
-                  <button class="btn delete">
-                    <i class="fa fa-trash"></i> Xóa
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH011</td>
-                <td>Đỗ Minh L</td>
-                <td>0933678901</td>
-                <td>Nha Trang</td>
-                <td>
-                  <button class="btn edit">
-                    <i class="fa fa-pen"></i> Sửa
-                  </button>
-                  <button class="btn delete">
-                    <i class="fa fa-trash"></i> Xóa
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH012</td>
-                <td>Vũ Phương M</td>
-                <td>0900789012</td>
-                <td>Đà Lạt</td>
-                <td>
-                  <button class="btn edit">
-                    <i class="fa fa-pen"></i> Sửa
-                  </button>
-                  <button class="btn delete">
-                    <i class="fa fa-trash"></i> Xóa
-                  </button>
-                </td>
-              </tr>
-            </tbody>
+            <tbody></tbody>
           </table>
         </div>
       </main>
@@ -314,6 +140,252 @@
             row.style.display = text.includes(keyword) ? "" : "none";
           });
         });
+      }
+    </script>
+    <div id="addCustomerModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Thêm khách hàng</h3>
+          <span class="close-btn" onclick="closeAddCustomer()">×</span>
+        </div>
+
+        <div class="modal-body">
+          <label>Mã KH (tự động)</label>
+
+          <label>Tên</label>
+          <input type="text" id="c_name" />
+
+          <label>SĐT</label>
+          <input type="text" id="c_phone" />
+
+          <label>Địa chỉ</label>
+          <input type="text" id="c_address" />
+
+          <button class="save-btn" onclick="addCustomer()">Thêm</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function openAddCustomer() {
+        document.getElementById("addCustomerModal").style.display = "block";
+      }
+
+      function closeAddCustomer() {
+        document.getElementById("addCustomerModal").style.display = "none";
+      }
+
+      function addCustomer() {
+        let name = document.getElementById("c_name").value.trim();
+        let phone = document.getElementById("c_phone").value.trim();
+        let address = document.getElementById("c_address").value.trim();
+
+        if (!name || !phone || !address) {
+          alert("Nhập đầy đủ!");
+          return;
+        }
+
+        // auto ID
+        let customers = JSON.parse(localStorage.getItem("customers") || "[]");
+        let id = "KH" + String(customers.length + 1).padStart(3, "0");
+
+        let newCus = { id, name, phone, address };
+
+        customers.push(newCus);
+        localStorage.setItem("customers", JSON.stringify(customers));
+
+        renderCustomers();
+
+        closeAddCustomer();
+
+        // clear input
+        document.getElementById("c_name").value = "";
+        document.getElementById("c_phone").value = "";
+        document.getElementById("c_address").value = "";
+      }
+
+      function renderCustomers() {
+        let customers = JSON.parse(localStorage.getItem("customers") || "[]");
+
+        let tbody = document.querySelector("tbody");
+        tbody.innerHTML = "";
+
+        customers.forEach((c) => {
+          let row = tbody.insertRow();
+
+          row.innerHTML = `
+            <td>${c.id}</td>
+            <td>${c.name}</td>
+            <td>${c.phone}</td>
+            <td>${c.address}</td>
+            <td>
+              <button class="btn edit" onclick="openEditCustomer('${c.id}')">
+                <i class="fa fa-pen"></i> Sửa
+              </button>
+              <button class="btn delete" onclick="deleteCustomer('${c.id}')">
+                <i class="fa fa-trash"></i> Xóa
+              </button>
+            </td>
+          `;
+        });
+      }
+
+      window.onload = function () {
+        if (!localStorage.getItem("customers")) {
+          let defaultCustomers = [
+            {
+              id: "KH001",
+              name: "Công ty TNHH A",
+              phone: "0901234567",
+              address: "TP.HCM",
+            },
+            {
+              id: "KH002",
+              name: "Nguyễn Văn B",
+              phone: "0912345678",
+              address: "Hà Nội",
+            },
+            {
+              id: "KH003",
+              name: "Trần Thị C",
+              phone: "0987654321",
+              address: "Đà Nẵng",
+            },
+            {
+              id: "KH004",
+              name: "Trần Văn D",
+              phone: "0988123456",
+              address: "Đà Nẵng",
+            },
+            {
+              id: "KH005",
+              name: "Lê Thị E",
+              phone: "0977123456",
+              address: "Hải Phòng",
+            },
+            {
+              id: "KH006",
+              name: "Phạm Văn F",
+              phone: "0966123456",
+              address: "Cần Thơ",
+            },
+            {
+              id: "KH007",
+              name: "Nguyễn Thị G",
+              phone: "0977234567",
+              address: "Hải Phòng",
+            },
+            {
+              id: "KH008",
+              name: "Trần Hoàng H",
+              phone: "0988345678",
+              address: "Đà Nẵng",
+            },
+            {
+              id: "KH009",
+              name: "Lê Văn I",
+              phone: "0911456789",
+              address: "Huế",
+            },
+            {
+              id: "KH010",
+              name: "Hoàng Thu K",
+              phone: "0944567890",
+              address: "Vũng Tàu",
+            },
+            {
+              id: "KH011",
+              name: "Đỗ Minh L",
+              phone: "0933678901",
+              address: "Nha Trang",
+            },
+            {
+              id: "KH012",
+              name: "Vũ Phương M",
+              phone: "0900789012",
+              address: "Đà Lạt",
+            },
+          ];
+
+          localStorage.setItem("customers", JSON.stringify(defaultCustomers));
+        }
+
+        renderCustomers();
+      };
+
+      function deleteCustomer(id) {
+        if (!confirm("Bạn có chắc muốn xóa?")) return;
+
+        let customers = JSON.parse(localStorage.getItem("customers") || "[]");
+
+        customers = customers.filter((c) => c.id !== id);
+
+        localStorage.setItem("customers", JSON.stringify(customers));
+
+        renderCustomers();
+      }
+    </script>
+    <div id="editCustomerModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Sửa khách hàng</h3>
+          <span onclick="closeEditCustomer()">×</span>
+        </div>
+
+        <div class="modal-body">
+          <input type="hidden" id="edit_id" />
+
+          <label>Tên</label>
+          <input type="text" id="edit_name" />
+
+          <label>SĐT</label>
+          <input type="text" id="edit_phone" />
+
+          <label>Địa chỉ</label>
+          <input type="text" id="edit_address" />
+
+          <button onclick="saveCustomer()">Lưu</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function openEditCustomer(id) {
+        let customers = JSON.parse(localStorage.getItem("customers") || "[]");
+
+        let c = customers.find((x) => x.id === id);
+
+        document.getElementById("edit_id").value = c.id;
+        document.getElementById("edit_name").value = c.name;
+        document.getElementById("edit_phone").value = c.phone;
+        document.getElementById("edit_address").value = c.address;
+
+        document.getElementById("editCustomerModal").style.display = "block";
+      }
+
+      function saveCustomer() {
+        let id = document.getElementById("edit_id").value;
+        let name = document.getElementById("edit_name").value;
+        let phone = document.getElementById("edit_phone").value;
+        let address = document.getElementById("edit_address").value;
+
+        let customers = JSON.parse(localStorage.getItem("customers") || "[]");
+
+        customers = customers.map((c) => {
+          if (c.id === id) {
+            c.name = name;
+            c.phone = phone;
+            c.address = address;
+          }
+          return c;
+        });
+
+        localStorage.setItem("customers", JSON.stringify(customers));
+
+        renderCustomers();
+        closeEditCustomer();
+      }
+
+      function closeEditCustomer() {
+        document.getElementById("editCustomerModal").style.display = "none";
       }
     </script>
   </body>

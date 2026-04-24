@@ -96,15 +96,17 @@
           <div class="toolbar-right">
             <input type="text" placeholder="Tìm mã đơn, tên KH..." />
 
-            <select>
+            <select id="statusFilter">
               <option>Tất cả</option>
               <option>Chờ xử lý</option>
-              <option>Đang vân chuyển</option>
+              <option>Đang vận chuyển</option>
+              <option>Vận chuyển không thành công</option>
+              <option>Đã giao hàng</option>
               <option>Hoàn thành</option>
               <option>Đã hủy</option>
             </select>
 
-            <button class="btn-add"><i class="fa fa-plus"></i> Tạo đơn</button>
+            <button class="btn-add" onclick="openAddModal()">+ Tạo đơn</button>
           </div>
         </div>
 
@@ -112,11 +114,12 @@
         <div class="table-box">
           <table>
             <tr>
-              <th>Mã</th>
+              <th>Mã đơn</th>
               <th>Khách hàng</th>
               <th>Điểm gửi</th>
               <th>Điểm nhận</th>
               <th>Trạng thái</th>
+              <th>Cập nhật bởi</th>
               <th>Hành động</th>
             </tr>
 
@@ -125,10 +128,11 @@
               <td>Công ty TNHH A</td>
               <td>TP.HCM</td>
               <td>Hà Nội</td>
-              <td><span class="status delivering">Đang giao</span></td>
+              <td><span class="status pending">Chờ xử lý</span></td>
+              <td class="updatedBy">---</td>
               <td>
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-pen"></i>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
                 <i class="fa fa-rotate"></i>
               </td>
             </tr>
@@ -138,10 +142,11 @@
               <td>Nguyễn Văn B</td>
               <td>Hà Nội</td>
               <td>Đà Nẵng</td>
-              <td><span class="status success">Hoàn thành</span></td>
+              <td><span class="status success">Đã giao hàng</span></td>
+              <td class="updatedBy">---</td>
               <td>
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-pen"></i>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
                 <i class="fa fa-rotate"></i>
               </td>
             </tr>
@@ -152,9 +157,10 @@
               <td>TP.HCM</td>
               <td>Cần Thơ</td>
               <td><span class="status pending">Chờ xử lý</span></td>
+              <td class="updatedBy">---</td>
               <td>
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-pen"></i>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
                 <i class="fa fa-rotate"></i>
               </td>
             </tr>
@@ -164,10 +170,11 @@
               <td>Cửa hàng Vật Tư</td>
               <td>Đà Nẵng</td>
               <td>Hà Nội</td>
-              <td><span class="status cancel">Đã hủy</span></td>
+              <td><span class="status pending">Chờ xử lý</span></td>
+              <td class="updatedBy">---</td>
               <td>
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-pen"></i>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
                 <i class="fa fa-rotate"></i>
               </td>
             </tr>
@@ -177,10 +184,11 @@
               <td>Công ty Minh Phát</td>
               <td>Hồ Chí Minh</td>
               <td>Hà Nội</td>
-              <td><span class="status delivering">Đang giao</span></td>
+              <td><span class="status delivering">Đang vận chuyển</span></td>
+              <td class="updatedBy">---</td>
               <td>
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-pen"></i>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
                 <i class="fa fa-rotate"></i>
               </td>
             </tr>
@@ -190,10 +198,11 @@
               <td>Shop Điện Tử Hưng Thịnh</td>
               <td>Đà Nẵng</td>
               <td>Hồ Chí Minh</td>
-              <td><span class="status success">Đã giao</span></td>
+              <td><span class="status success">Đã giao hàng</span></td>
+              <td class="updatedBy">---</td>
               <td>
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-pen"></i>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
                 <i class="fa fa-rotate"></i>
               </td>
             </tr>
@@ -204,9 +213,10 @@
               <td>Hà Nội</td>
               <td>Hải Phòng</td>
               <td><span class="status pending">Chờ xử lý</span></td>
+              <td class="updatedBy">---</td>
               <td>
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-pen"></i>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
                 <i class="fa fa-rotate"></i>
               </td>
             </tr>
@@ -216,10 +226,11 @@
               <td>Cửa hàng Nội Thất An Khang</td>
               <td>Huế</td>
               <td>Đà Nẵng</td>
-              <td><span class="status delivering">Đang giao</span></td>
+              <td><span class="status delivering">Đang vận chuyển</span></td>
+              <td class="updatedBy">---</td>
               <td>
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-pen"></i>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
                 <i class="fa fa-rotate"></i>
               </td>
             </tr>
@@ -229,10 +240,11 @@
               <td>Shop Thời Trang Bella</td>
               <td>Hồ Chí Minh</td>
               <td>Cần Thơ</td>
-              <td><span class="status success">Đã giao</span></td>
+              <td><span class="status success">Đã giao hàng</span></td>
+              <td class="updatedBy">---</td>
               <td>
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-pen"></i>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
                 <i class="fa fa-rotate"></i>
               </td>
             </tr>
@@ -243,22 +255,24 @@
               <td>Đà Nẵng</td>
               <td>TP.HCM</td>
               <td><span class="status cancel">Đã hủy</span></td>
+              <td class="updatedBy">---</td>
               <td>
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-pen"></i>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
                 <i class="fa fa-rotate"></i>
               </td>
             </tr>
 
             <tr>
               <td>D11</td>
-              <td>Nguyễn Võ Đức Dũng</td>
+              <td>Trần Minh Thành</td>
               <td>Bình Định</td>
               <td>TP. Hồ Chí Minh</td>
               <td><span class="status success">Hoàn thành</span></td>
+              <td class="updatedBy">---</td>
               <td>
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-pen"></i>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
                 <i class="fa fa-rotate"></i>
               </td>
             </tr>
@@ -268,9 +282,10 @@
               <td>Hải Phòng</td>
               <td>Đà Lạt</td>
               <td><span class="status pending">Chờ xử lý</span></td>
+              <td class="updatedBy">---</td>
               <td>
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-pen"></i>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
                 <i class="fa fa-rotate"></i>
               </td>
             </tr>
@@ -280,9 +295,10 @@
               <td>Cần Thơ</td>
               <td>Hà Nội</td>
               <td><span class="status success">Hoàn thành</span></td>
+              <td class="updatedBy">---</td>
               <td>
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-pen"></i>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
                 <i class="fa fa-rotate"></i>
               </td>
             </tr>
@@ -292,9 +308,94 @@
               <td>Đà Nẵng</td>
               <td>Nha Trang</td>
               <td><span class="status cancel">Đã hủy</span></td>
+              <td class="updatedBy">---</td>
               <td>
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-pen"></i>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D15</td>
+              <td>Nguyễn Minh Tuấn</td>
+              <td>Hà Nội</td>
+              <td>Hải Phòng</td>
+              <td><span class="status pending">Chờ xử lý</span></td>
+              <td class="updatedBy">---</td>
+              <td>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D16</td>
+              <td>Lê Thị Hồng</td>
+              <td>TP.HCM</td>
+              <td>Đà Nẵng</td>
+              <td><span class="status delivering">Đang vận chuyển</span></td>
+              <td class="updatedBy">---</td>
+              <td>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D17</td>
+              <td>Trần Quốc Bảo</td>
+              <td>Cần Thơ</td>
+              <td>TP.HCM</td>
+              <td><span class="status success">Đã giao hàng</span></td>
+              <td class="updatedBy">---</td>
+              <td>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D18</td>
+              <td>Phạm Văn Hoàng</td>
+              <td>Huế</td>
+              <td>Đà Nẵng</td>
+              <td><span class="status success">Hoàn thành</span></td>
+              <td class="updatedBy">---</td>
+              <td>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D19</td>
+              <td>Công ty ABC</td>
+              <td>Hải Phòng</td>
+              <td>Hà Nội</td>
+              <td><span class="status cancel">Đã hủy</span></td>
+              <td class="updatedBy">---</td>
+              <td>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
+                <i class="fa fa-rotate"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>D20</td>
+              <td>Nguyễn Văn Đức</td>
+              <td>Đà Nẵng</td>
+              <td>Nha Trang</td>
+              <td><span class="status delivering">Đang vận chuyển</span></td>
+              <td class="updatedBy">---</td>
+              <td>
+                <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+                <i class="fa fa-pen" onclick="openEditModal(this)"></i>
                 <i class="fa fa-rotate"></i>
               </td>
             </tr>
@@ -328,5 +429,520 @@
         });
       }
     </script>
+    <!-- POPUP -->
+    <div id="orderModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Chi tiết đơn hàng</h3>
+          <span class="close-btn" onclick="closeOrderModal()">×</span>
+        </div>
+
+        <div class="modal-body">
+          <p><b>Mã đơn:</b> <span id="m_id"></span></p>
+          <p><b>Khách hàng:</b> <span id="m_customer"></span></p>
+
+          <hr />
+
+          <p><b>Điểm gửi:</b> <span id="m_from"></span></p>
+          <p><b>Điểm nhận:</b> <span id="m_to"></span></p>
+
+          <hr />
+
+          <p><b>Người gửi:</b> <span id="m_sender"></span></p>
+          <p><b>SĐT gửi:</b> <span id="m_sender_phone"></span></p>
+
+          <p><b>Người nhận:</b> <span id="m_receiver"></span></p>
+          <p><b>SĐT nhận:</b> <span id="m_receiver_phone"></span></p>
+
+          <hr />
+
+          <p><b>Trạng thái:</b> <span id="m_status"></span></p>
+        </div>
+      </div>
+    </div>
+    <script>
+      function closeOrderModal() {
+        document.getElementById("orderModal").style.display = "none";
+      }
+
+      window.addEventListener("click", function (e) {
+        let orderModal = document.getElementById("orderModal");
+        let addModal = document.getElementById("addModal");
+
+        if (e.target === orderModal) {
+          closeOrderModal();
+        }
+
+        if (e.target === addModal) {
+          closeAddModal();
+        }
+      });
+    </script>
+
+    <!-- POPUP CHỈNH SỬA -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Chỉnh sửa đơn hàng</h3>
+          <span class="close-btn" onclick="closeEditModal()">×</span>
+        </div>
+
+        <div class="modal-body">
+          <p><b>Mã đơn:</b> <span id="e_id"></span></p>
+
+          <label>Trạng thái:</label>
+          <select id="e_status">
+            <option>Chờ xử lý</option>
+            <option>Đã hủy</option>
+          </select>
+          <label>Điểm nhận:</label>
+          <input type="text" id="e_to" />
+
+          <label>Người nhận:</label>
+          <input type="text" id="e_receiver" />
+
+          <label>SĐT người nhận:</label>
+          <input type="text" id="e_phone" />
+
+          <button class="save-btn" onclick="saveEdit()">Lưu thay đổi</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      let currentRow = null;
+
+      function openEditModal(icon) {
+        let row = icon.closest("tr");
+        let cols = row.querySelectorAll("td");
+
+        let status = cols[4].innerText.trim();
+
+        // ❌ KHÔNG CHO SỬA TRẠNG THÁI CUỐI
+        if (
+          status === "Đã hủy" ||
+          status === "Hoàn thành" ||
+          status === "Đã giao hàng"
+        ) {
+          alert("Không thể chỉnh sửa đơn đã kết thúc!");
+          return;
+        }
+
+        currentRow = row;
+
+        document.getElementById("e_id").innerText = cols[0].innerText;
+        document.getElementById("e_to").value = cols[3].innerText;
+
+        let select = document.getElementById("e_status");
+
+        // 🎯 RESET OPTION
+        select.innerHTML = "";
+
+        // 🎯 LỌC OPTION THEO TRẠNG THÁI
+
+        if (status === "Chờ xử lý") {
+          select.innerHTML = `
+      <option>Chờ xử lý</option>
+      <option>Đã hủy</option>
+    `;
+        }
+
+        if (status === "Đang vận chuyển") {
+          select.innerHTML = `
+    <option>Đang vận chuyển</option>
+    <option>Đã hủy</option>
+  `;
+        }
+
+        // 🔥 THÊM ĐOẠN NÀY
+        if (status === "Vận chuyển không thành công") {
+          select.innerHTML = `
+    <option>Vận chuyển không thành công</option>
+    <option>Đang vận chuyển</option>
+    <option>Đã hủy</option>
+  `;
+        }
+
+        document.getElementById("e_status").value = status;
+
+        document.getElementById("editModal").style.display = "block";
+      }
+    </script>
+    <script>
+      function closeEditModal() {
+        document.getElementById("editModal").style.display = "none";
+      }
+
+      function saveEdit() {
+        let newStatus = document.getElementById("e_status").value;
+        let cols = currentRow.querySelectorAll("td");
+        let currentStatus = cols[4].innerText.trim();
+        if (currentStatus === "Đã giao hàng" || currentStatus === "Đã hủy") {
+          alert("Đơn đã kết thúc, không thể chỉnh sửa!");
+          return;
+        }
+
+        const statusOrder = [
+          "Chờ xử lý",
+          "Đang vận chuyển",
+          "Đã giao hàng",
+          "Hoàn thành",
+          "Đã hủy",
+        ];
+
+        let currentIndex = statusOrder.indexOf(currentStatus);
+        let newIndex = statusOrder.indexOf(newStatus);
+
+        // ❌ CHẶN QUAY NGƯỢC
+        if (newIndex < currentIndex) {
+          alert("Không thể quay ngược trạng thái!");
+          return;
+        }
+
+        let orderId = cols[0].innerText;
+        // 🎯 CHỈ tạo thông báo khi Chờ xử lý → Đã hủy
+        if (currentStatus === "Chờ xử lý" && newStatus === "Đã hủy") {
+          let notis = JSON.parse(localStorage.getItem("notifications") || "[]");
+
+          notis.unshift({
+            id: orderId,
+            status: newStatus,
+            from: currentStatus,
+            by: "Điều phối",
+            time: new Date().toLocaleTimeString(),
+            read: false,
+          });
+
+          localStorage.setItem("notifications", JSON.stringify(notis));
+        }
+
+        // 🚫 phân quyền
+        if (newStatus === "Đang vận chuyển") {
+          alert("Chỉ shipper mới được xác nhận nhận hàng!");
+          return;
+        }
+
+        if (newStatus === "Đã giao hàng" || newStatus === "Hoàn thành") {
+          alert("Chỉ shipper mới được cập nhật trạng thái này!");
+          return;
+        }
+
+        // 🔥 lưu người cập nhật
+        localStorage.setItem("updatedBy_" + orderId, "Điều phối");
+        let newTo = document.getElementById("e_to").value;
+
+        cols[3].innerText = newTo;
+        let className = getStatusClass(newStatus);
+
+        cols[4].innerHTML = `<span class="status ${className}">${newStatus}</span>`;
+
+        localStorage.setItem("status_" + orderId, newStatus);
+        // 🔥 nếu giao lại thì reset fail
+        if (newStatus === "Đang vận chuyển") {
+          localStorage.setItem("fail_" + orderId, 0);
+        }
+        localStorage.setItem("updatedBy_" + orderId, "Điều phối");
+        closeEditModal();
+      }
+    </script>
+    <script>
+      function openOrderModal(icon) {
+        let row = icon.closest("tr");
+        let cols = row.querySelectorAll("td");
+
+        document.getElementById("m_id").innerText = cols[0].innerText;
+        document.getElementById("m_customer").innerText = cols[1].innerText;
+        document.getElementById("m_from").innerText = cols[2].innerText;
+        document.getElementById("m_to").innerText = cols[3].innerText;
+        document.getElementById("m_status").innerHTML = cols[4].innerHTML;
+
+        // fake data
+        let id = cols[0].innerText;
+
+        let data = JSON.parse(localStorage.getItem("order_" + id));
+
+        document.getElementById("m_sender").innerText =
+          "Kho " + cols[2].innerText;
+
+        document.getElementById("m_receiver").innerText = cols[1].innerText;
+
+        if (data) {
+          document.getElementById("m_sender_phone").innerText =
+            data.senderPhone || "";
+
+          document.getElementById("m_receiver_phone").innerText =
+            data.receiverPhone || "";
+        }
+        document.getElementById("orderModal").style.display = "block";
+        if (!data) {
+          document.getElementById("m_sender_phone").innerText = "---";
+          document.getElementById("m_receiver_phone").innerText = "---";
+        }
+      }
+    </script>
+    <script>
+      function getStatusClass(status) {
+        switch (status) {
+          case "Chờ xử lý":
+            return "pending";
+          case "Đang vận chuyển":
+            return "delivering";
+          case "Vận chuyển không thành công":
+            return "cancel";
+          case "Đã giao hàng":
+            return "success";
+          case "Hoàn thành":
+            return "success";
+          case "Đã hủy":
+            return "cancel";
+          default:
+            return "pending";
+        }
+      }
+    </script>
+    <script>
+      window.onload = function () {
+        // ====== PHẦN 1: LOAD STATUS ======
+        let rows = document.querySelectorAll(".table-box table tr");
+
+        rows.forEach((row, index) => {
+          if (index === 0) return;
+
+          let cols = row.querySelectorAll("td");
+          let id = cols[0].innerText;
+
+          let savedStatus = localStorage.getItem("status_" + id);
+          let updatedBy = localStorage.getItem("updatedBy_" + id);
+
+          if (savedStatus) {
+            let fail = localStorage.getItem("fail_" + id) || 0;
+
+            let text = savedStatus;
+            if (fail > 0 && savedStatus === "Vận chuyển không thành công") {
+              text += ` (${fail} lần)`;
+            }
+
+            let className = getStatusClass(savedStatus);
+            cols[4].innerHTML = `<span class="status ${className}">${text}</span>`;
+          }
+
+          if (updatedBy) {
+            cols[5].innerText = updatedBy;
+          }
+        });
+
+        // ====== PHẦN 2: LOAD ORDERS ======
+
+        let orders = JSON.parse(localStorage.getItem("orders") || "[]");
+
+        let table = document.querySelector(".table-box table");
+        let select = document.getElementById("a_customer");
+        let customers = JSON.parse(localStorage.getItem("customers") || "[]");
+
+        select.innerHTML = '<option value="">-- Chọn khách hàng --</option>';
+
+        customers.forEach((c) => {
+          select.innerHTML += `<option value="${c.name}">${c.name}</option>`;
+        });
+        orders.forEach((order) => {
+          let row = table.insertRow(-1);
+
+          let statusClass = getStatusClass(order.status);
+
+          row.innerHTML = `
+    <td>${order.id}</td>
+    <td>${order.customer}</td>
+    <td>${order.from}</td>
+    <td>${order.to}</td>
+    <td><span class="status ${statusClass}">${order.status}</span></td>
+    <td>---</td>
+    <td>...</td>
+  `;
+        });
+      };
+    </script>
+    <script>
+      window.addEventListener("storage", function (e) {
+        if (e.key && e.key.startsWith("status_")) {
+          let orderId = e.key.replace("status_", "");
+          let newStatus = e.newValue;
+
+          document
+            .querySelectorAll(".table-box table tr")
+            .forEach((row, index) => {
+              if (index === 0) return;
+
+              let cols = row.querySelectorAll("td");
+
+              if (cols[0].innerText === orderId) {
+                let className = getStatusClass(newStatus);
+
+                cols[4].innerHTML = `<span class="status ${className}">${newStatus}</span>`;
+
+                // 🔥 THÊM PHẦN NÀY
+                let updatedBy = localStorage.getItem("updatedBy_" + orderId);
+
+                if (updatedBy) {
+                  cols[5].innerText = updatedBy;
+                }
+              }
+            });
+        }
+      });
+      const statusFilter = document.getElementById("statusFilter");
+
+      if (statusFilter) {
+        statusFilter.addEventListener("change", function () {
+          const selected = this.value.toLowerCase();
+          const rows = document.querySelectorAll(".table-box table tr");
+
+          rows.forEach((row, index) => {
+            if (index === 0) return; // bỏ header
+
+            const status = row
+              .querySelector("td:nth-child(5)")
+              .innerText.toLowerCase();
+
+            if (selected === "tất cả") {
+              row.style.display = "";
+            } else {
+              row.style.display = status.includes(selected) ? "" : "none";
+            }
+          });
+        });
+      }
+      function openAddModal() {
+        document.getElementById("addModal").style.display = "block";
+      }
+      function viewCustomerOrders(name) {
+        let orders = [];
+
+        // lấy đơn từ localStorage
+        for (let key in localStorage) {
+          if (key.startsWith("order_")) {
+            let o = JSON.parse(localStorage.getItem(key));
+            if (o.customer === name) {
+              orders.push(o.id);
+            }
+          }
+        }
+
+        alert("Khách " + name + " có đơn: " + orders.join(", "));
+      }
+      function closeAddModal() {
+        document.getElementById("addModal").style.display = "none";
+      }
+      function addOrder() {
+        let rows = document.querySelectorAll(".table-box table tr").length - 1;
+        let id = "D" + String(rows + 1).padStart(2, "0");
+
+        let customer = document.getElementById("a_customer").value.trim();
+        let customers = JSON.parse(localStorage.getItem("customers") || "[]");
+        let sender = document.getElementById("a_sender").value.trim();
+        let receiver = document.getElementById("a_receiver").value.trim();
+        // kiểm tra khách đã tồn tại chưa
+        let exists = customers.some((c) => c.name === customer);
+
+        if (!exists) {
+          let newId = "KH" + String(customers.length + 1).padStart(3, "0");
+
+          customers.push({
+            id: newId,
+            name: customer,
+            phone: "",
+            address: "",
+          });
+
+          localStorage.setItem("customers", JSON.stringify(customers));
+        }
+        let from = document.getElementById("a_from").value.trim();
+        let to = document.getElementById("a_to").value.trim();
+        let senderPhone = document
+          .getElementById("a_sender_phone")
+          .value.trim();
+        let receiverPhone = document
+          .getElementById("a_receiver_phone")
+          .value.trim();
+
+        if (!customer || !from || !to || !senderPhone || !receiverPhone) {
+          alert("Vui lòng nhập đầy đủ!");
+          return;
+        }
+
+        let table = document.querySelector(".table-box table");
+        let row = table.insertRow(-1);
+
+        row.innerHTML = `
+    <td>${id}</td>
+    <td>${customer}</td>
+    <td>${from}</td>
+    <td>${to}</td>
+    <td><span class="status pending">Chờ xử lý</span></td>
+    <td class="updatedBy">---</td>
+    <td>
+      <i class="fa fa-eye" onclick="openOrderModal(this)"></i>
+      <i class="fa fa-pen" onclick="openEditModal(this)"></i>
+      <i class="fa fa-rotate"></i>
+    </td>
+  `;
+
+        localStorage.setItem(
+          "order_" + id,
+          JSON.stringify({
+            customer,
+            sender,
+            receiver,
+            senderPhone,
+            receiverPhone,
+          })
+        );
+
+        // sync status
+        localStorage.setItem("status_" + id, "Chờ xử lý");
+        localStorage.setItem("updatedBy_" + id, "Điều phối");
+        row.scrollIntoView({ behavior: "smooth" });
+
+        closeAddModal();
+
+        // clear input
+        document.getElementById("a_customer").value = "";
+        document.getElementById("a_from").value = "";
+        document.getElementById("a_to").value = "";
+        document.getElementById("a_sender_phone").value = "";
+        document.getElementById("a_receiver_phone").value = "";
+      }
+    </script>
+    <div id="addModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Tạo đơn hàng</h3>
+          <span class="close-btn" onclick="closeAddModal()">×</span>
+        </div>
+
+        <div class="modal-body">
+          <label>Mã đơn: (tự động)</label>
+
+          <label>Khách hàng:</label>
+          <select id="a_customer"></select>
+          <label>Người gửi:</label>
+          <input type="text" id="a_sender" />
+
+          <label>Người nhận:</label>
+          <input type="text" id="a_receiver" />
+          <label>Điểm gửi:</label>
+          <input type="text" id="a_from" />
+
+          <label>Điểm nhận:</label>
+          <input type="text" id="a_to" />
+
+          <label>SĐT người gửi:</label>
+          <input type="text" id="a_sender_phone" />
+
+          <label>SĐT người nhận:</label>
+          <input type="text" id="a_receiver_phone" />
+
+          <button class="save-btn" onclick="addOrder()">Tạo</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

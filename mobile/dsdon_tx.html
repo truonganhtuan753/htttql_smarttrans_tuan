@@ -18,12 +18,19 @@
       <div class="logo">
         <img src="../images/logo.jpg" />
       </div>
-      <i class="fa fa-bell"></i>
+      <div class="bell-wrapper" onclick="openNoti()">
+        <i class="fa fa-bell"></i>
+        <span id="notiBadge" class="badge"></span>
+      </div>
     </div>
 
     <!-- SEARCH -->
     <div class="search-box">
-      <input type="text" placeholder="Tìm mã đơn..." />
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Tìm mã đơn, người gửi, địa chỉ..."
+      />
     </div>
 
     <!-- DANH SÁCH -->
@@ -34,104 +41,128 @@
           <i class="fa fa-truck"></i>
           <span>Đơn: D01</span>
         </div>
+        <p class="customer">Người gửi: Công ty TNHH A</p>
         <p>TP.HCM → Hà Nội</p>
-        <div class="status shipping">
-          <i class="fa fa-circle"></i> Đang vận chuyển
-        </div>
+
+        <div class="status pending"><i class="fa fa-circle"></i> Chờ xử lý</div>
+
         <a href="chi_tiet.html?id=D01">
-          <button class="btn green">Xem chi tiết</button>
+          <button class="btn yellow">Xem chi tiết</button>
         </a>
       </div>
-
       <!-- D02 -->
-      <div class="order-card">
+      <div class="order-card" data-id="D02">
         <div class="order-title">
           <i class="fa fa-truck"></i>
           <span>Đơn: D02</span>
         </div>
+        <p class="customer">Người gửi: Nguyễn Văn B</p>
         <p>Hà Nội → Đà Nẵng</p>
         <div class="status done">
-          <i class="fa fa-check-circle"></i> Hoàn thành
+          <i class="fa fa-check-circle"></i> Đã giao hàng
         </div>
-        <button class="btn green">Xem chi tiết</button>
+        <a href="chi_tiet.html?id=D02">
+          <button class="btn green">Xem chi tiết</button>
+        </a>
       </div>
 
       <!-- D03 -->
-      <div class="order-card">
+      <div class="order-card" data-id="D03">
         <div class="order-title">
           <i class="fa fa-truck"></i>
           <span>Đơn: D03</span>
         </div>
+        <p class="customer">Người gửi: Công ty xây dựng Số 1</p>
         <p>TP.HCM → Cần Thơ</p>
         <div class="status pending">
           <i class="fa fa-hourglass-half"></i> Chờ xử lý
         </div>
-        <button class="btn yellow">Xem chi tiết</button>
+        <a href="chi_tiet.html?id=D03">
+          <button class="btn yellow">Xem chi tiết</button>
+        </a>
       </div>
 
       <!-- D04 -->
-      <div class="order-card">
+      <div class="order-card" data-id="D04">
         <div class="order-title">
           <i class="fa fa-truck"></i>
           <span>Đơn: D04</span>
         </div>
+        <p class="customer">Người gửi: Cửa hàng Vật tư</p>
         <p>Đà Nẵng → Hà Nội</p>
         <div class="status pending">
           <i class="fa fa-hourglass-half"></i> Chờ xử lý
         </div>
-        <button class="btn yellow">Xem chi tiết</button>
+        <a href="chi_tiet.html?id=D04">
+          <button class="btn yellow">Xem chi tiết</button>
+        </a>
       </div>
 
       <!-- D05 -->
-      <div class="order-card">
+      <div class="order-card" data-id="D05">
         <div class="order-title">
           <i class="fa fa-truck"></i>
           <span>Đơn: D05</span>
         </div>
+        <p class="customer">Người gửi: Công ty Minh Phát</p>
         <p>TP.HCM → Hải Phòng</p>
         <div class="status shipping">
           <i class="fa fa-circle"></i> Đang vận chuyển
         </div>
-        <button class="btn green">Xem chi tiết</button>
+        <a href="chi_tiet.html?id=D05">
+          <button class="btn yellow">Xem chi tiết</button>
+        </a>
       </div>
 
       <!-- D06 -->
-      <div class="order-card">
+      <div class="order-card" data-id="D06">
         <div class="order-title">
           <i class="fa fa-truck"></i>
           <span>Đơn: D06</span>
         </div>
+        <p class="customer">Người gửi: Shop Điện Tử Hưng Thịnh</p>
+
         <p>Hà Nội → Cần Thơ</p>
         <div class="status done">
-          <i class="fa fa-check-circle"></i> Hoàn thành
+          <i class="fa fa-check-circle"></i> Đã giao hàng
         </div>
-        <button class="btn green">Xem chi tiết</button>
+        <a href="chi_tiet.html?id=D06">
+          <button class="btn green">Xem chi tiết</button>
+        </a>
       </div>
 
       <!-- D07 -->
-      <div class="order-card">
+      <div class="order-card" data-id="D07">
         <div class="order-title">
           <i class="fa fa-truck"></i>
           <span>Đơn: D07</span>
         </div>
+        <p class="customer">Người gửi: Kho Tổng Miền Bắc</p>
+
         <p>Hải Phòng → Đà Nẵng</p>
         <div class="status pending">
           <i class="fa fa-hourglass-half"></i> Chờ xử lý
         </div>
-        <button class="btn yellow">Xem chi tiết</button>
+        <a href="chi_tiet.html?id=D07">
+          <button class="btn yellow">Xem chi tiết</button>
+        </a>
       </div>
 
       <!-- D08 -->
-      <div class="order-card">
+      <div class="order-card" data-id="D08">
         <div class="order-title">
           <i class="fa fa-truck"></i>
           <span>Đơn: D08</span>
         </div>
+        <p class="customer">Người gửi: Cửa hàng Nội Thất An Khang</p>
+
         <p>Cần Thơ → TP.HCM</p>
         <div class="status shipping">
           <i class="fa fa-circle"></i> Đang vận chuyển
         </div>
-        <button class="btn green">Xem chi tiết</button>
+        <a href="chi_tiet.html?id=D08">
+          <button class="btn yellow">Xem chi tiết</button>
+        </a>
       </div>
     </div>
     <!-- BOTTOM NAV -->
@@ -146,28 +177,203 @@
         }
       </script>
     </div>
+
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("driverLogin") !== "true") {
+        window.location.href = "login_tx.html";
+      }
+    </script>
+    <script>
+      function getStatusClass(status) {
+        switch (status) {
+          case "Chờ xử lý":
+            return "pending";
+          case "Đang vận chuyển":
+            return "shipping";
+          case "Đã giao hàng":
+            return "done";
+          case "Hoàn thành":
+            return "done";
+          case "Vận chuyển không thành công":
+            return "cancel";
+          default:
+            return "pending";
+        }
+      }
+
+      window.onload = function () {
+        updateBadge();
         document.querySelectorAll(".order-card").forEach((card) => {
-          const id = card.getAttribute("data-id");
-          const saved = localStorage.getItem("status_" + id);
+          let id = card.dataset.id;
 
-          if (saved) {
-            const statusEl = card.querySelector(".status");
+          let savedStatus = localStorage.getItem("status_" + id);
 
-            statusEl.innerHTML = "● " + saved;
-            statusEl.className = "status";
+          if (savedStatus) {
+            let statusEl = card.querySelector(".status");
+            let btn = card.querySelector(".btn");
 
-            if (saved === "Đang vận chuyển") {
-              statusEl.classList.add("shipping");
-            } else if (saved === "Đã giao hàng") {
-              statusEl.classList.add("done");
-            } else {
-              statusEl.classList.add("cancel");
-            }
+            let icon = getStatusIcon(savedStatus);
+
+            statusEl.innerHTML = `<i class="fa ${icon}"></i> ${savedStatus}`;
+            statusEl.className = "status " + getStatusClass(savedStatus);
+            btn.className = "btn " + getButtonClass(savedStatus) + " animate";
+
+            setTimeout(() => {
+              btn.classList.remove("animate");
+            }, 300);
+          }
+        });
+      };
+    </script>
+    <script>
+      window.addEventListener("storage", function () {
+        document.querySelectorAll(".order-card").forEach((card) => {
+          let id = card.dataset.id;
+          let savedStatus = localStorage.getItem("status_" + id);
+
+          if (savedStatus) {
+            let statusEl = card.querySelector(".status");
+            let btn = card.querySelector(".btn");
+
+            let icon = getStatusIcon(savedStatus);
+
+            // update status
+            statusEl.innerHTML = `<i class="fa ${icon}"></i> ${savedStatus}`;
+            statusEl.className = "status " + getStatusClass(savedStatus);
+
+            // 🔥 update button + animation
+            btn.className = "btn " + getButtonClass(savedStatus) + " animate";
+
+            setTimeout(() => {
+              btn.classList.remove("animate");
+            }, 300);
           }
         });
       });
+
+      function getStatusIcon(status) {
+        switch (status) {
+          case "Chờ xử lý":
+            return "fa-hourglass-half";
+          case "Đang vận chuyển":
+            return "fa-truck";
+          case "Đã giao hàng":
+            return "fa-check-circle";
+          case "Hoàn thành":
+            return "fa-check-circle";
+          case "Vận chuyển không thành công":
+            return "fa-times-circle";
+          default:
+            return "fa-circle";
+        }
+      }
+
+      function getButtonClass(status) {
+        switch (status) {
+          case "Đã giao hàng":
+          case "Hoàn thành":
+            return "green";
+
+          case "Vận chuyển không thành công":
+            return "gray";
+
+          default:
+            return "yellow";
+        }
+      }
+    </script>
+    <div id="notiModal" class="modal">
+      <div class="modal-content">
+        <h3>Thông báo</h3>
+        <div id="notiList"></div>
+      </div>
+    </div>
+    <script>
+      let timeout;
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", function () {
+          clearTimeout(timeout);
+
+          timeout = setTimeout(() => {
+            let keyword = this.value.toLowerCase();
+
+            document.querySelectorAll(".order-card").forEach((card) => {
+              let text = card.innerText.toLowerCase();
+
+              card.style.display = text.includes(keyword) ? "block" : "none";
+            });
+          }, 200);
+        });
+      function openNoti() {
+        let notis = JSON.parse(localStorage.getItem("notifications") || "[]");
+
+        let html = "";
+
+        if (notis.length === 0) {
+          html = "<p>Không có thông báo</p>";
+        } else {
+          notis.forEach((n) => {
+            html += `
+        <div class="noti-item">
+          ⚠️ Đơn ${n.id} đã bị HỦY
+          <br><small>${n.time}</small>
+        </div>
+      `;
+          });
+        }
+
+        document.getElementById("notiList").innerHTML = html;
+        document.getElementById("notiModal").style.display = "block";
+
+        // đánh dấu đã đọc
+        notis.forEach((n) => (n.read = true));
+        localStorage.setItem("notifications", JSON.stringify(notis));
+
+        updateBadge();
+      }
+      function updateBadge() {
+        let notis = JSON.parse(localStorage.getItem("notifications") || "[]");
+
+        let unread = notis.filter((n) => !n.read).length;
+
+        let badge = document.getElementById("notiBadge");
+
+        if (unread > 0) {
+          badge.style.display = "block";
+          badge.innerText = unread;
+        } else {
+          badge.style.display = "none";
+        }
+      }
+      window.addEventListener("storage", function (e) {
+        if (e.key === "notifications") {
+          updateBadge();
+        }
+      });
+      window.onclick = function (e) {
+        let modal = document.getElementById("notiModal");
+
+        if (e.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+      function updateStatus(id, newStatus) {
+        localStorage.setItem("status_" + id, newStatus);
+
+        // 🔥 lưu ai cập nhật
+        localStorage.setItem("updatedBy_" + id, "Shipper");
+
+        // 🔥 nếu fail thì tăng số lần
+        if (newStatus === "Vận chuyển không thành công") {
+          let fail = parseInt(localStorage.getItem("fail_" + id) || "0");
+          fail++;
+          localStorage.setItem("fail_" + id, fail);
+        }
+
+        location.reload();
+      }
     </script>
   </body>
 </html>

@@ -95,8 +95,8 @@
             <i class="fa fa-cart-shopping"></i>
             <div>
               <p>Tổng đơn hàng</p>
-              <h3>15,489 đơn</h3>
-              <span class="percent up">+8%</span> tháng này
+              <h3>20 đơn</h3>
+              <span class="percent up">+3%</span> tháng này
             </div>
           </div>
 
@@ -104,8 +104,8 @@
             <i class="fa fa-money-bill"></i>
             <div>
               <p>Doanh thu</p>
-              <h3>1,890,500,000 VNĐ</h3>
-              <span class="percent up">+12%</span> tháng này
+              <h3>2,000,000 VNĐ</h3>
+              <span class="percent up">+8%</span> tháng này
             </div>
           </div>
 
@@ -113,7 +113,7 @@
             <i class="fa fa-truck"></i>
             <div>
               <p>Đơn đang giao</p>
-              <h3>2,130 đơn</h3>
+              <h3>4 đơn</h3>
             </div>
           </div>
 
@@ -121,7 +121,7 @@
             <i class="fa fa-user"></i>
             <div>
               <p>Khách hàng mới</p>
-              <h3>68</h3>
+              <h3>10</h3>
               <span class="percent up">+5%</span>
             </div>
           </div>
@@ -142,57 +142,113 @@
               <th>Mã đơn</th>
               <th>Khách hàng</th>
               <th>Nội dung hàng</th>
-              <th>Nơi đến</th>
+              <th>Điểm nhận</th>
               <th>Trạng thái</th>
               <th>Ngày tạo</th>
               <th>Chi tiết</th>
             </tr>
 
-            <tr>
-              <td>DH00123</td>
-              <td>Công ty ABC</td>
+            <tr
+              data-id="D20"
+              data-customer="Nguyễn Văn Đức"
+              data-goods="Máy móc"
+              data-from="TP.HCM"
+              data-to="Nha Trang"
+              data-sender="Kho HCM"
+              data-sender-phone="0901111111"
+              data-receiver="Nguyễn Văn Đức"
+              data-receiver-phone="0902222222"
+              data-status="Đang vận chuyển"
+              data-date="5/4/2026"
+            >
+              <td>D20</td>
+              <td>Nguyễn Văn Đức</td>
               <td>Máy móc</td>
-              <td>TP.HCM</td>
-              <td><span class="status delivering">Đang giao</span></td>
+              <td>Nha Trang</td>
+              <td><span class="status delivering">Đang vận chuyển</span></td>
               <td>5/4/2026</td>
               <td>
-                <button class="view-btn"><i class="fa fa-eye"></i> Xem</button>
+                <button class="view-btn" onclick="openOrderModal(this)">
+                  <i class="fa fa-eye"></i> Xem
+                </button>
               </td>
             </tr>
 
-            <tr>
-              <td>DH00122</td>
-              <td>Nguyễn Nam</td>
+            <tr
+              data-id="D19"
+              data-customer="Công ty ABC"
+              data-goods="Đồ gia dụng"
+              data-from="TP.HCM"
+              data-to="Hà Nội"
+              data-sender="Kho HCM"
+              data-sender-phone="0903333333"
+              data-receiver="Công ty ABC"
+              data-receiver-phone="0904444444"
+              data-status="Đã hủy"
+              data-date="4/4/2026"
+            >
+              <td>D19</td>
+              <td>Công ty ABC</td>
               <td>Đồ gia dụng</td>
-              <td>Đà Nẵng</td>
-              <td><span class="status success">Đã giao</span></td>
+              <td>Hà Nội</td>
+              <td><span class="status cancel">Đã hủy</span></td>
               <td>4/4/2026</td>
               <td>
-                <button class="view-btn"><i class="fa fa-eye"></i> Xem</button>
+                <button class="view-btn" onclick="openOrderModal(this)">
+                  <i class="fa fa-eye"></i> Xem
+                </button>
               </td>
             </tr>
 
-            <tr>
-              <td>DH00121</td>
-              <td>Trương Hoài Anh Thư</td>
+            <tr
+              data-id="D18"
+              data-customer="Phạm Văn Hoàng"
+              data-goods="Đồ gia dụng"
+              data-from="Hà Nội"
+              data-to="Đà Nẵng"
+              data-sender="Kho Hà Nội"
+              data-sender-phone="0905555555"
+              data-receiver="Phạm Văn Hoàng"
+              data-receiver-phone="0906666666"
+              data-status="Hoàn thành"
+              data-date="3/4/2026"
+            >
+              <td>D18</td>
+              <td>Phạm Văn Hoàng</td>
               <td>Đồ gia dụng</td>
               <td>Đà Nẵng</td>
-              <td><span class="status cancel">Đã hủy</span></td>
+              <td><span class="status success">Hoàn thành</span></td>
               <td>3/4/2026</td>
               <td>
-                <button class="view-btn"><i class="fa fa-eye"></i> Xem</button>
+                <button class="view-btn" onclick="openOrderModal(this)">
+                  <i class="fa fa-eye"></i> Xem
+                </button>
               </td>
             </tr>
 
-            <tr>
-              <td>DH00120</td>
-              <td>Công ty XYZ</td>
+            <tr
+              data-id="D17"
+              data-customer="Trần Quốc Bảo"
+              data-goods="Vật liệu XD"
+              data-from="Cần Thơ"
+              data-to="TP.HCM"
+              data-sender="Kho Cần Thơ"
+              data-sender-phone="0907777777"
+              data-receiver="Trần Quốc Bảo"
+              data-receiver-phone="0908888888"
+              data-status="Hoàn thành"
+              data-date="2/4/2026"
+            >
+              <td>D17</td>
+              <td>Trần Quốc Bảo</td>
               <td>Vật liệu XD</td>
-              <td>Hà Nội</td>
-              <td><span class="status pending">Chờ xử lý</span></td>
+              <td>TP.HCM</td>
+              <td><span class="status success">Hoàn thành</span></td>
               <td>2/4/2026</td>
               <td>
-                <button class="view-btn"><i class="fa fa-eye"></i> Xem</button>
+                <button class="view-btn" onclick="openOrderModal(this)">
+                  <i class="fa fa-eye"></i> Xem
+                </button>
               </td>
             </tr>
           </table>
@@ -207,5 +263,166 @@
       localStorage.removeItem("login");
       window.location.href = "dang_nhap.html";
     };
+  </script>
+  <!-- POPUP CHI TIẾT -->
+  <div id="orderModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Chi tiết đơn hàng</h3>
+        <span class="close-btn" onclick="closeOrderModal()">×</span>
+      </div>
+
+      <div class="modal-body">
+        <p><b>Mã đơn:</b> <span id="m_id"></span></p>
+
+        <p><b>Khách hàng:</b> <span id="m_customer"></span></p>
+
+        <p><b>Loại hàng:</b> <span id="m_goods"></span></p>
+
+        <hr />
+
+        <p><b>Điểm gửi:</b> <span id="m_from"></span></p>
+
+        <p><b>Điểm nhận:</b> <span id="m_to"></span></p>
+
+        <hr />
+
+        <p><b>Người gửi:</b> <span id="m_sender"></span></p>
+        <p><b>SĐT người gửi:</b> <span id="m_sender_phone"></span></p>
+
+        <p><b>Người nhận:</b> <span id="m_receiver"></span></p>
+        <p><b>SĐT người nhận:</b> <span id="m_receiver_phone"></span></p>
+
+        <hr />
+
+        <p><b>Trạng thái:</b> <span id="m_status"></span></p>
+
+        <p><b>Ngày tạo:</b> <span id="m_date"></span></p>
+      </div>
+    </div>
+  </div>
+  <script>
+    function openOrderModal() {
+      document.getElementById("orderModal").style.display = "block";
+    }
+
+    function closeOrderModal() {
+      document.getElementById("orderModal").style.display = "none";
+    }
+
+    // click ra ngoài để đóng
+    window.onclick = function (event) {
+      let modal = document.getElementById("orderModal");
+      if (event.target === modal) {
+        closeOrderModal();
+      }
+    };
+  </script>
+  <script>
+    function openOrderModal(btn) {
+      let row = btn.closest("tr");
+
+      // lấy data từ dataset
+      let id = row.dataset.id;
+      let customer = row.dataset.customer;
+      let goods = row.dataset.goods;
+      let from = row.dataset.from;
+      let to = row.dataset.to;
+
+      let sender = row.dataset.sender;
+      let senderPhone = row.dataset.senderPhone;
+
+      let receiver = row.dataset.receiver;
+      let receiverPhone = row.dataset.receiverPhone;
+
+      let status = row.dataset.status;
+      let date = row.dataset.date;
+
+      // gán dữ liệu
+      document.getElementById("m_id").innerText = id;
+      document.getElementById("m_customer").innerText = customer;
+      document.getElementById("m_goods").innerText = goods;
+
+      document.getElementById("m_from").innerText = from;
+      document.getElementById("m_to").innerText = to;
+
+      document.getElementById("m_sender").innerText = sender;
+      document.getElementById("m_sender_phone").innerText = senderPhone;
+
+      document.getElementById("m_receiver").innerText = receiver;
+      document.getElementById("m_receiver_phone").innerText = receiverPhone;
+
+      document.getElementById("m_status").innerText = status;
+      document.getElementById("m_date").innerText = date;
+
+      // mở modal
+      document.getElementById("orderModal").style.display = "block";
+    }
+  </script>
+  <script>
+    window.onload = function () {
+      // ====== LOAD TABLE ======
+      let rows = document.querySelectorAll(".table-box table tr");
+
+      rows.forEach((row, index) => {
+        if (index === 0) return;
+
+        let cols = row.querySelectorAll("td");
+        let id = cols[0].innerText;
+
+        let savedStatus = localStorage.getItem("status_" + id);
+
+        if (savedStatus) {
+          let className = getStatusClass(savedStatus);
+
+          let fail = localStorage.getItem("fail_" + id) || 0;
+
+          let text = savedStatus;
+          if (fail > 0 && savedStatus === "Vận chuyển không thành công") {
+            text += ` (${fail} lần)`;
+          }
+
+          cols[4].innerHTML = `<span class="status ${className}">${text}</span>`;
+        }
+      });
+
+      // ====== LOAD ORDER CARD (nếu có) ======
+      document.querySelectorAll(".order-card").forEach((card) => {
+        let id = card.dataset.id;
+
+        let savedStatus = localStorage.getItem("status_" + id);
+
+        if (savedStatus) {
+          let statusEl = card.querySelector(".status");
+
+          let className = getStatusClass(savedStatus);
+
+          statusEl.innerText = savedStatus;
+          statusEl.className = "status " + className;
+        }
+      });
+    };
+  </script>
+  <script>
+    function getStatusClass(status) {
+      switch (status) {
+        case "Chờ xử lý":
+          return "pending";
+        case "Đã phân công":
+          return "pending";
+        case "Đang vận chuyển":
+          return "delivering";
+        case "Đã giao hàng":
+          return "success";
+        case "Vận chuyển không thành công":
+          return "cancel";
+        case "Hoàn thành":
+          return "success";
+        case "Đã hủy":
+          return "cancel";
+        default:
+          return "pending";
+      }
+    }
   </script>
 </html>

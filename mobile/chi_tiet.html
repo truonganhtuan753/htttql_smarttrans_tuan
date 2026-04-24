@@ -23,25 +23,30 @@
     <div class="container">
       <!-- MÃ ĐƠN -->
       <div class="card">
-        <h2>Mã đơn: D01</h2>
+        <h2 id="orderIdText">Mã đơn: D01</h2>
       </div>
 
       <!-- TUYẾN ĐƯỜNG -->
       <div class="card">
-        <p><i class="fa fa-map-marker-alt"></i> TP.HCM</p>
+        <p id="fromLocation"><i class="fa fa-map-marker-alt"></i> TP.HCM</p>
+
         <p class="arrow">đến ↓</p>
-        <p><i class="fa fa-map-marker"></i> Hà Nội</p>
+
+        <p id="toLocation"><i class="fa fa-map-marker"></i> Hà Nội</p>
       </div>
 
       <!-- KHÁCH HÀNG -->
       <div class="card">
-        <p><i class="fa fa-user"></i> Khách hàng: Công ty A</p>
-        <p><i class="fa fa-phone"></i> 0901234567</p>
+        <p id="customerName">
+          <i class="fa fa-user"></i> Khách hàng: Công ty A
+        </p>
+
+        <p id="customerPhone"><i class="fa fa-phone"></i> 0901234567</p>
       </div>
 
       <!-- HÀNG -->
       <div class="card">
-        <p><i class="fa fa-box"></i> Loại hàng: Điện tử</p>
+        <p id="goodsType"><i class="fa fa-box"></i> Loại hàng: Điện tử</p>
       </div>
 
       <!-- TRẠNG THÁI -->
@@ -61,49 +66,285 @@
     <!-- MODAL -->
     <div id="statusModal" class="modal">
       <div class="modal-content">
-        <h3>Chọn trạng thái</h3>
-
-        <div class="option shipping" onclick="updateStatus('Đang vận chuyển')">
-          🚚 Đang vận chuyển
+        <div class="modal-header">
+          <h3>Cập nhật trạng thái</h3>
+          <span class="close-btn" onclick="closeModal()">×</span>
         </div>
 
-        <div class="option done" onclick="updateStatus('Đã giao hàng')">
-          📦 Đã giao hàng
-        </div>
+        <div id="statusOptions"></div>
 
-        <div class="option cancel" onclick="updateStatus('Hủy đơn')">
-          ❌ Hủy đơn
-        </div>
+        <button id="confirmBtn" disabled>Xác nhận (3)</button>
       </div>
     </div>
     <script>
-      function openModal() {
-        document.getElementById("statusModal").style.display = "block";
-      }
+      let selectedStatus = "";
+      let countdown;
 
-      function updateStatus(status) {
+      // DATA ĐƠN HÀNG
+      const ordersData = {
+        D01: {
+          from: "TP.HCM",
+          to: "Hà Nội",
+          customer: "Công ty TNHH A",
+          phone: "0901111111",
+          goods: "Thiết bị điện tử",
+        },
+
+        D02: {
+          from: "Hà Nội",
+          to: "Đà Nẵng",
+          customer: "Nguyễn Văn B",
+          phone: "0902222222",
+          goods: "Hàng tiêu dùng",
+        },
+
+        D03: {
+          from: "TP.HCM",
+          to: "Cần Thơ",
+          customer: "Công ty xây dựng Số 1",
+          phone: "0903333333",
+          goods: "Vật liệu xây dựng",
+        },
+
+        D04: {
+          from: "Đà Nẵng",
+          to: "Hà Nội",
+          customer: "Cửa hàng Vật Tư",
+          phone: "0904444444",
+          goods: "Thiết bị công nghiệp",
+        },
+
+        D05: {
+          from: "Hồ Chí Minh",
+          to: "Hà Nội",
+          customer: "Công ty Minh Phát",
+          phone: "0905555555",
+          goods: "Linh kiện máy móc",
+        },
+
+        D06: {
+          from: "Đà Nẵng",
+          to: "Hồ Chí Minh",
+          customer: "Shop Điện Tử Hưng Thịnh",
+          phone: "0906666666",
+          goods: "Đồ điện tử",
+        },
+
+        D07: {
+          from: "Hà Nội",
+          to: "Hải Phòng",
+          customer: "Kho Tổng Miền Bắc",
+          phone: "0907777777",
+          goods: "Hàng kho vận",
+        },
+
+        D08: {
+          from: "Huế",
+          to: "Đà Nẵng",
+          customer: "Cửa hàng Nội Thất An Khang",
+          phone: "0908888888",
+          goods: "Nội thất",
+        },
+      };
+
+      const validTransitions = {
+        "Chờ xử lý": ["Đã nhận đơn"],
+
+        "Đã nhận đơn": ["Đang vận chuyển"],
+
+        "Đang vận chuyển": ["Đã giao hàng", "Vận chuyển không thành công"],
+
+        "Vận chuyển không thành công": ["Đang vận chuyển"],
+
+        "Đã giao hàng": [],
+      };
+
+      // mở modal
+      function openModal() {
         const params = new URLSearchParams(window.location.search);
         const id = params.get("id");
 
-        // 👉 lưu
-        localStorage.setItem("status_" + id, status);
+        let currentStatus = localStorage.getItem("status_" + id);
 
-        // 👉 update UI
+        // nếu chưa có hoặc sai format
+        if (!currentStatus || !validTransitions[currentStatus]) {
+          currentStatus = "Chờ xử lý";
+        }
+
+        let options = validTransitions[currentStatus];
+
+        let html = "";
+
+        options.forEach((status) => {
+          html += `
+    <div class="option" onclick="selectStatus('${status}', this)">
+      ${status}
+    </div>
+  `;
+        });
+
+        // nếu hết trạng thái
+        if (options.length === 0) {
+          html = "<p>Đơn hàng đã hoàn tất, không thể cập nhật thêm.</p>";
+        }
+
+        document.getElementById("statusOptions").innerHTML = html;
+
+        document.getElementById("statusModal").style.display = "block";
+
+        startCountdown();
+      }
+
+      // đóng modal
+      function closeModal() {
+        document.getElementById("statusModal").style.display = "none";
+
+        clearInterval(countdown);
+      }
+
+      // chọn trạng thái
+      function selectStatus(status, el) {
+        selectedStatus = status;
+
+        document.querySelectorAll(".option").forEach((opt) => {
+          opt.classList.remove("active");
+        });
+
+        el.classList.add("active");
+      }
+
+      // countdown
+      function startCountdown() {
+        let timeLeft = 3;
+
+        const btn = document.getElementById("confirmBtn");
+
+        btn.disabled = true;
+
+        btn.innerText = `Xác nhận (${timeLeft})`;
+
+        countdown = setInterval(() => {
+          timeLeft--;
+
+          btn.innerText = `Xác nhận (${timeLeft})`;
+
+          if (timeLeft <= 0) {
+            clearInterval(countdown);
+
+            btn.disabled = false;
+
+            btn.innerText = "Xác nhận";
+          }
+        }, 1000);
+      }
+
+      // xác nhận update
+      document.getElementById("confirmBtn").onclick = function () {
+        if (!selectedStatus) {
+          alert("Vui lòng chọn trạng thái!");
+          return;
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        localStorage.setItem("status_" + id, selectedStatus);
+        localStorage.setItem("updatedBy_" + id, "Shipper");
+        if (selectedStatus === "Vận chuyển không thành công") {
+          let fail = parseInt(localStorage.getItem("fail_" + id) || "0");
+          localStorage.setItem("fail_" + id, fail + 1);
+        }
+        let notis = JSON.parse(localStorage.getItem("notifications") || "[]");
+
+        notis.unshift({
+          id: id,
+          status: selectedStatus,
+          by: "Shipper",
+          time: new Date().toLocaleTimeString(),
+          read: false,
+        });
+
+        localStorage.setItem("notifications", JSON.stringify(notis));
         const statusBox = document.querySelector(".status");
 
-        statusBox.innerHTML = "● " + status;
+        statusBox.innerHTML = "● " + selectedStatus;
+
         statusBox.className = "status";
 
-        if (status === "Đang vận chuyển") {
+        if (selectedStatus === "Đã nhận đơn") {
+          statusBox.classList.add("received");
+        } else if (selectedStatus === "Đang vận chuyển") {
           statusBox.classList.add("shipping");
-        } else if (status === "Đã giao hàng") {
+        } else if (selectedStatus === "Đã giao hàng") {
           statusBox.classList.add("done");
-        } else {
+        } else if (selectedStatus === "Vận chuyển không thành công") {
           statusBox.classList.add("cancel");
         }
 
-        document.getElementById("statusModal").style.display = "none";
-      }
+        closeModal();
+      };
+
+      window.onload = function () {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+        document.getElementById("orderIdText").innerText = "Mã đơn: " + id;
+        const order = ordersData[id];
+
+        if (order) {
+          document.getElementById("fromLocation").innerHTML =
+            '<i class="fa fa-map-marker-alt"></i> ' + order.from;
+
+          document.getElementById("toLocation").innerHTML =
+            '<i class="fa fa-map-marker"></i> ' + order.to;
+
+          document.getElementById("customerName").innerHTML =
+            '<i class="fa fa-user"></i> Khách hàng: ' + order.customer;
+
+          document.getElementById("customerPhone").innerHTML =
+            '<i class="fa fa-phone"></i> ' + order.phone;
+
+          document.getElementById("goodsType").innerHTML =
+            '<i class="fa fa-box"></i> Loại hàng: ' + order.goods;
+        }
+        let savedStatus = localStorage.getItem("status_" + id);
+
+        // Mặc định demo D01 là Chờ xử lý
+        if (!savedStatus && defaultStatus[id]) {
+          savedStatus = defaultStatus[id];
+
+          localStorage.setItem("status_" + id, savedStatus);
+        }
+        if (!savedStatus) return;
+
+        const statusBox = document.querySelector(".status");
+
+        statusBox.innerHTML = "● " + savedStatus;
+
+        statusBox.className = "status";
+
+        if (savedStatus === "Chờ xử lý") {
+          statusBox.classList.add("pending");
+        } else if (savedStatus === "Đã nhận đơn") {
+          statusBox.classList.add("received");
+        } else if (savedStatus === "Đang vận chuyển") {
+          statusBox.classList.add("shipping");
+        } else if (savedStatus === "Đã giao hàng") {
+          statusBox.classList.add("done");
+        } else if (selectedStatus === "Vận chuyển không thành công") {
+          statusBox.classList.add("cancel");
+        }
+      };
+
+      const defaultStatus = {
+        D01: "Chờ xử lý",
+        D02: "Đã giao hàng",
+        D03: "Chờ xử lý",
+        D04: "Chờ xử lý",
+        D05: "Đang vận chuyển",
+        D06: "Đã giao hàng",
+        D07: "Chờ xử lý",
+        D08: "Đang vận chuyển",
+      };
     </script>
   </body>
 </html>
