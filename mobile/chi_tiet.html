@@ -72,6 +72,23 @@
         </div>
 
         <div id="statusOptions"></div>
+        <div id="statusOptions"></div>
+
+        <!-- 🔥 upload ảnh -->
+        <div id="uploadBox" style="display: none; margin-top: 15px">
+          <label>📷 Ảnh xác nhận:</label>
+          <input type="file" id="statusImage" />
+
+          <button
+            class="btn-main"
+            onclick="fakeUpload()"
+            style="margin-top: 8px"
+          >
+            Thêm hình ảnh
+          </button>
+
+          <p id="uploadMsg" style="color: green; font-size: 13px"></p>
+        </div>
 
         <button id="confirmBtn" disabled>Xác nhận (3)</button>
       </div>
@@ -192,6 +209,9 @@
 
         document.getElementById("statusModal").style.display = "block";
 
+        document.getElementById("uploadBox").style.display = "none";
+        document.getElementById("uploadMsg").innerText = "";
+        document.getElementById("statusImage").value = "";
         startCountdown();
       }
 
@@ -211,16 +231,19 @@
         });
 
         el.classList.add("active");
+        document.getElementById("uploadBox").style.display = "block";
       }
 
       // countdown
       function startCountdown() {
+        // 🔥 fix trùng interval
+        clearInterval(countdown);
+
         let timeLeft = 3;
 
         const btn = document.getElementById("confirmBtn");
 
         btn.disabled = true;
-
         btn.innerText = `Xác nhận (${timeLeft})`;
 
         countdown = setInterval(() => {
@@ -232,7 +255,6 @@
             clearInterval(countdown);
 
             btn.disabled = false;
-
             btn.innerText = "Xác nhận";
           }
         }, 1000);
@@ -345,6 +367,18 @@
         D07: "Chờ xử lý",
         D08: "Đang vận chuyển",
       };
+
+      function fakeUpload() {
+        let file = document.getElementById("statusImage").value;
+
+        if (!file) {
+          alert("Vui lòng chọn ảnh");
+          return;
+        }
+
+        document.getElementById("uploadMsg").innerText =
+          "✔ Đã thêm ảnh xác nhận";
+      }
     </script>
   </body>
 </html>

@@ -270,6 +270,7 @@
                 <th>Mã</th>
                 <th>Tên</th>
                 <th>SĐT</th>
+                <th>Khu vực</th>
                 <th>Bằng lái</th>
                 <th>Hành động</th>
               </tr>
@@ -278,6 +279,7 @@
                 <td>TX01</td>
                 <td>Trần Văn Nam</td>
                 <td>0912345678</td>
+                <td>Quận 1 - TP.HCM</td>
                 <td>B2</td>
                 <td>
                   <button class="btn edit">
@@ -293,6 +295,7 @@
                 <td>TX02</td>
                 <td>Nguyễn Hoàng Long</td>
                 <td>0922334455</td>
+                <td>Quận 7 - TP.HCM</td>
                 <td>C</td>
                 <td>
                   <button class="btn edit">
@@ -307,7 +310,9 @@
                 <td>TX03</td>
                 <td>Phạm Minh Đức</td>
                 <td>0933445566</td>
+                <td>Quận 3 - TP.HCM</td>
                 <td>D</td>
+
                 <td>
                   <button class="btn edit">
                     <i class="fa fa-pen"></i> Sửa
@@ -321,7 +326,9 @@
                 <td>TX04</td>
                 <td>Lê Thanh Tùng</td>
                 <td>0944556677</td>
+                <td>Quận 5 - TP.HCM</td>
                 <td>B2</td>
+
                 <td>
                   <button class="btn edit">
                     <i class="fa fa-pen"></i> Sửa
@@ -335,7 +342,9 @@
                 <td>TX05</td>
                 <td>Vũ Hải Đăng</td>
                 <td>0955667788</td>
+                <td>Quận Bình Thạnh - TP.HCM</td>
                 <td>E</td>
+
                 <td>
                   <button class="btn edit">
                     <i class="fa fa-pen"></i> Sửa
@@ -349,6 +358,7 @@
                 <td>TX06</td>
                 <td>Đặng Quốc Bảo</td>
                 <td>0966778899</td>
+                <td>Cầu Giấy - Hà Nội</td>
                 <td>C</td>
                 <td>
                   <button class="btn edit">
@@ -363,6 +373,7 @@
                 <td>TX07</td>
                 <td>Bùi Anh Tuấn</td>
                 <td>0977889900</td>
+                <td>Hai Bà Trưng - Hà Nội</td>
                 <td>B2</td>
                 <td>
                   <button class="btn edit">
@@ -377,6 +388,7 @@
                 <td>TX08</td>
                 <td>Trương Công Vinh</td>
                 <td>0988990011</td>
+                <td>Hải Châu - Đà Nẵng</td>
                 <td>D</td>
                 <td>
                   <button class="btn edit">
@@ -391,6 +403,7 @@
                 <td>TX09</td>
                 <td>Hồ Sỹ Hùng</td>
                 <td>0911223344</td>
+                <td>Thanh Khê - Đà Nẵng</td>
                 <td>C</td>
                 <td>
                   <button class="btn edit">
@@ -401,10 +414,12 @@
                   </button>
                 </td>
               </tr>
+
               <tr>
                 <td>TX10</td>
                 <td>Đỗ Tiến Đạt</td>
                 <td>0900112233</td>
+                <td>Ninh Kiều - Cần Thơ</td>
                 <td>B2</td>
                 <td>
                   <button class="btn edit">
@@ -415,10 +430,12 @@
                   </button>
                 </td>
               </tr>
+
               <tr>
                 <td>TX11</td>
                 <td>Ngô Quang Khải</td>
                 <td>0933557799</td>
+                <td>Hải An - Hải Phòng</td>
                 <td>E</td>
                 <td>
                   <button class="btn edit">
@@ -429,10 +446,12 @@
                   </button>
                 </td>
               </tr>
+
               <tr>
                 <td>TX12</td>
                 <td>Lý Văn Thắng</td>
                 <td>0922446688</td>
+                <td>Thuận An - Bình Dương</td>
                 <td>C</td>
                 <td>
                   <button class="btn edit">
@@ -443,10 +462,12 @@
                   </button>
                 </td>
               </tr>
+
               <tr>
                 <td>TX13</td>
                 <td>Trần Đình Trọng</td>
                 <td>0944668800</td>
+                <td>Biên Hòa - Đồng Nai</td>
                 <td>B2</td>
                 <td>
                   <button class="btn edit">
@@ -461,7 +482,9 @@
                 <td>TX14</td>
                 <td>Phan Thanh Bình</td>
                 <td>0955779911</td>
+                <td>Vũng Tàu - Bà Rịa</td>
                 <td>D</td>
+
                 <td>
                   <button class="btn edit">
                     <i class="fa fa-pen"></i> Sửa
@@ -475,7 +498,9 @@
                 <td>TX15</td>
                 <td>Dương Văn Thái</td>
                 <td>0966880022</td>
+                <td>Nha Trang - Khánh Hòa</td>
                 <td>B2</td>
+
                 <td>
                   <button class="btn edit">
                     <i class="fa fa-pen"></i> Sửa
@@ -626,22 +651,8 @@
         document.getElementById("d_name").value = "";
         document.getElementById("d_phone").value = "";
         document.getElementById("d_license").value = "";
+        document.getElementById("d_area").value = "";
       }
-      document.querySelectorAll(".delete").forEach((btn) => {
-        btn.onclick = function () {
-          if (confirm("Xóa?")) {
-            this.closest("tr").remove();
-          }
-        };
-      });
-
-      document.querySelectorAll("#taixe .delete").forEach((btn) => {
-        btn.onclick = function () {
-          if (confirm("Xóa tài xế?")) {
-            this.closest("tr").remove();
-          }
-        };
-      });
 
       document.querySelectorAll("#xe .edit").forEach((btn) => {
         btn.onclick = function () {
@@ -670,7 +681,8 @@
           document.getElementById("d_id").value = cols[0].innerText;
           document.getElementById("d_name").value = cols[1].innerText;
           document.getElementById("d_phone").value = cols[2].innerText;
-          document.getElementById("d_license").value = cols[3].innerText;
+          document.getElementById("d_license").value = cols[4].innerText;
+          document.getElementById("d_area").value = cols[3].innerText;
 
           window.editDriverRow = row;
         };
@@ -683,6 +695,7 @@
         document.getElementById("d_name").value = "";
         document.getElementById("d_phone").value = "";
         document.getElementById("d_license").value = "";
+        document.getElementById("d_area").value = "";
 
         window.editDriverRow = null;
       }
@@ -693,6 +706,7 @@
         let license = document.getElementById("d_license").value;
 
         let table = document.querySelector("#taixe table");
+        let area = document.getElementById("d_area").value;
 
         // SỬA
         if (window.editDriverRow) {
@@ -700,13 +714,41 @@
 
           cols[1].innerText = name;
           cols[2].innerText = phone;
-          cols[3].innerText = license;
+          cols[3].innerText = area;
+          cols[4].innerText = license;
+
+          let drivers = JSON.parse(localStorage.getItem("drivers") || "[]");
+          let d = drivers.find((x) => x.id === cols[0].innerText);
+
+          if (d) {
+            d.name = name;
+            d.phone = phone;
+            d.area = area;
+            d.license = license;
+          }
+
+          localStorage.setItem("drivers", JSON.stringify(drivers));
 
           window.editDriverRow = null;
         }
         // THÊM
         else {
-          let newId = "TX" + String(table.rows.length).padStart(2, "0");
+          let drivers = JSON.parse(localStorage.getItem("drivers") || "[]");
+          let max = drivers.length
+            ? Math.max(...drivers.map((d) => +d.id.replace("TX", "")))
+            : 0;
+          let newId = "TX" + String(max + 1).padStart(2, "0");
+
+          drivers.push({
+            id: newId,
+            name,
+            phone,
+            area,
+            license,
+            status: "available",
+          });
+
+          localStorage.setItem("drivers", JSON.stringify(drivers));
 
           let row = table.insertRow(-1);
 
@@ -714,6 +756,7 @@
       <td>${newId}</td>
       <td>${name}</td>
       <td>${phone}</td>
+        <td>${area}</td> 
       <td>${license}</td>
       <td>
         <button class="btn edit"><i class="fa fa-pen"></i> Sửa</button>
@@ -729,6 +772,48 @@
         }, 0);
       }
 
+      function parseLocation(text) {
+        if (!text.includes("-")) {
+          return { district: "", city: text.trim() };
+        }
+
+        let parts = text.split("-");
+        return {
+          district: parts[0].trim(),
+          city: parts[1].trim(),
+        };
+      }
+
+      function autoAssignDriver(from) {
+        let drivers = JSON.parse(localStorage.getItem("drivers") || "[]");
+        let orders = JSON.parse(localStorage.getItem("orders") || "[]");
+
+        if (drivers.length === 0) return null;
+
+        let location = parseLocation(from);
+
+        let available = drivers.filter((d) => d.status === "available");
+
+        let sameCity = available.filter(
+          (d) => parseLocation(d.area).city === location.city
+        );
+        let sameDistrict = sameCity.filter(
+          (d) => parseLocation(d.area).district === location.district
+        );
+
+        let pool = [];
+
+        if (sameDistrict.length > 0) {
+          pool = sameDistrict;
+        } else if (sameCity.length > 0) {
+          pool = sameCity;
+        } else {
+          pool = available;
+        }
+
+        return pool[0]?.id || null;
+      }
+
       function attachDriverEvents() {
         document.querySelectorAll("#taixe .edit").forEach((btn) => {
           btn.onclick = function () {
@@ -740,7 +825,8 @@
             document.getElementById("d_id").value = cols[0].innerText;
             document.getElementById("d_name").value = cols[1].innerText;
             document.getElementById("d_phone").value = cols[2].innerText;
-            document.getElementById("d_license").value = cols[3].innerText;
+            document.getElementById("d_area").value = cols[3].innerText;
+            document.getElementById("d_license").value = cols[4].innerText;
 
             window.editDriverRow = row;
           };
@@ -749,15 +835,20 @@
         document.querySelectorAll("#taixe .delete").forEach((btn) => {
           btn.onclick = function () {
             if (confirm("Xóa tài xế?")) {
-              this.closest("tr").remove();
+              let row = this.closest("tr");
+              let id = row.querySelector("td").innerText;
+
+              let drivers = JSON.parse(localStorage.getItem("drivers") || "[]");
+              drivers = drivers.filter((d) => d.id !== id);
+
+              localStorage.setItem("drivers", JSON.stringify(drivers));
+
+              row.remove();
             }
           };
         });
       }
 
-      function closeDriverModal() {
-        document.getElementById("driverModal").style.display = "none";
-      }
       attachDriverEvents();
     </script>
     <div id="driverModal" class="modal">
@@ -777,7 +868,8 @@
 
         <label>Bằng lái</label>
         <input id="d_license" />
-
+        <label>Khu vực</label>
+        <input id="d_area" />
         <button onclick="saveDriver()">Lưu</button>
       </div>
     </div>
@@ -808,6 +900,142 @@
         });
       }
       attachVehicleEvents();
+
+      if (!localStorage.getItem("drivers")) {
+        localStorage.setItem(
+          "drivers",
+          JSON.stringify([
+            {
+              id: "TX01",
+              name: "Trần Văn Nam",
+              phone: "0912345678",
+              area: "Quận 1 - TP.HCM",
+              license: "B2",
+              status: "available",
+            },
+            {
+              id: "TX02",
+              name: "Nguyễn Hoàng Long",
+              phone: "0922334455",
+              area: "Quận 7 - TP.HCM",
+              license: "C",
+              status: "available",
+            },
+            {
+              id: "TX03",
+              name: "Phạm Minh Đức",
+              phone: "0933445566",
+              area: "Quận 3 - TP.HCM",
+              license: "D",
+              status: "available",
+            },
+            {
+              id: "TX04",
+              name: "Lê Thanh Tùng",
+              phone: "0944556677",
+              area: "Quận 5 - TP.HCM",
+              license: "B2",
+              status: "available",
+            },
+            {
+              id: "TX05",
+              name: "Vũ Hải Đăng",
+              phone: "0955667788",
+              area: "Quận Bình Thạnh - TP.HCM",
+              license: "E",
+              status: "available",
+            },
+
+            {
+              id: "TX06",
+              name: "Đặng Quốc Bảo",
+              phone: "0966778899",
+              area: "Cầu Giấy - Hà Nội",
+              license: "C",
+              status: "available",
+            },
+            {
+              id: "TX07",
+              name: "Bùi Anh Tuấn",
+              phone: "0977889900",
+              area: "Hai Bà Trưng - Hà Nội",
+              license: "B2",
+              status: "available",
+            },
+
+            {
+              id: "TX08",
+              name: "Trương Công Vinh",
+              phone: "0988990011",
+              area: "Hải Châu - Đà Nẵng",
+              license: "D",
+              status: "available",
+            },
+            {
+              id: "TX09",
+              name: "Hồ Sỹ Hùng",
+              phone: "0911223344",
+              area: "Thanh Khê - Đà Nẵng",
+              license: "C",
+              status: "available",
+            },
+
+            {
+              id: "TX10",
+              name: "Đỗ Tiến Đạt",
+              phone: "0900112233",
+              area: "Ninh Kiều - Cần Thơ",
+              license: "B2",
+              status: "available",
+            },
+
+            {
+              id: "TX11",
+              name: "Ngô Quang Khải",
+              phone: "0933557799",
+              area: "Hải An - Hải Phòng",
+              license: "E",
+              status: "available",
+            },
+
+            {
+              id: "TX12",
+              name: "Lý Văn Thắng",
+              phone: "0922446688",
+              area: "Thuận An - Bình Dương",
+              license: "C",
+              status: "available",
+            },
+
+            {
+              id: "TX13",
+              name: "Trần Đình Trọng",
+              phone: "0944668800",
+              area: "Biên Hòa - Đồng Nai",
+              license: "B2",
+              status: "available",
+            },
+
+            {
+              id: "TX14",
+              name: "Phan Thanh Bình",
+              phone: "0955779911",
+              area: "Vũng Tàu - Bà Rịa",
+              license: "D",
+              status: "available",
+            },
+
+            {
+              id: "TX15",
+              name: "Dương Văn Thái",
+              phone: "0966880022",
+              area: "Nha Trang - Khánh Hòa",
+              license: "B2",
+              status: "available",
+            },
+          ])
+        );
+      }
     </script>
   </body>
 </html>

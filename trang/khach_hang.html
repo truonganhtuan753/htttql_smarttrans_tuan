@@ -230,8 +230,11 @@
       }
 
       window.onload = function () {
-        if (!localStorage.getItem("customers")) {
-          let defaultCustomers = [
+        let customers = JSON.parse(localStorage.getItem("customers") || "[]");
+
+        // 🔥 nếu chưa có hoặc rỗng thì tạo mặc định
+        if (customers.length === 0) {
+          customers = [
             {
               id: "KH001",
               name: "Công ty TNHH A",
@@ -306,8 +309,18 @@
             },
           ];
 
-          localStorage.setItem("customers", JSON.stringify(defaultCustomers));
+          localStorage.setItem("customers", JSON.stringify(customers));
         }
+
+        // 🔥 chuẩn hóa dữ liệu
+        customers = customers.map((c) => ({
+          id: c.id,
+          name: c.name,
+          phone: c.phone || "",
+          address: c.address || "",
+        }));
+
+        localStorage.setItem("customers", JSON.stringify(customers));
 
         renderCustomers();
       };
