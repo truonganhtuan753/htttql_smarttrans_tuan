@@ -55,7 +55,8 @@
         <div class="status shipping">
           <i class="fa fa-circle"></i> Đang vận chuyển
         </div>
-        <small>Cập nhật: 10:30 AM</small>
+        <small id="updateTime">Cập nhật: ---</small>
+        <small id="createTime">Tạo lúc: ---</small>
       </div>
 
       <!-- BUTTON -->
@@ -71,7 +72,6 @@
           <span class="close-btn" onclick="closeModal()">×</span>
         </div>
 
-        <div id="statusOptions"></div>
         <div id="statusOptions"></div>
 
         <!-- 🔥 upload ảnh -->
@@ -271,6 +271,7 @@
         const id = params.get("id");
 
         localStorage.setItem("status_" + id, selectedStatus);
+        localStorage.setItem("updatedAt_" + id, new Date().toLocaleString());
         localStorage.setItem("updatedBy_" + id, "Shipper");
         if (selectedStatus === "Vận chuyển không thành công") {
           let fail = parseInt(localStorage.getItem("fail_" + id) || "0");
@@ -309,6 +310,11 @@
       window.onload = function () {
         const params = new URLSearchParams(window.location.search);
         const id = params.get("id");
+        let time = localStorage.getItem("updatedAt_" + id);
+
+        if (time) {
+          document.getElementById("updateTime").innerText = "Cập nhật: " + time;
+        }
         document.getElementById("orderIdText").innerText = "Mã đơn: " + id;
         const order = ordersData[id];
 
@@ -341,6 +347,19 @@
         const statusBox = document.querySelector(".status");
 
         statusBox.innerHTML = "● " + savedStatus;
+        // 🔥 thời gian cập nhật
+        let updated = localStorage.getItem("updatedAt_" + id);
+        if (updated) {
+          document.getElementById("updateTime").innerText =
+            "Cập nhật: " + updated;
+        }
+
+        // 🔥 thời gian tạo
+        let created = localStorage.getItem("createdAt_" + id);
+        if (created) {
+          document.getElementById("createTime").innerText =
+            "Tạo lúc: " + created;
+        }
 
         statusBox.className = "status";
 
@@ -352,7 +371,7 @@
           statusBox.classList.add("shipping");
         } else if (savedStatus === "Đã giao hàng") {
           statusBox.classList.add("done");
-        } else if (selectedStatus === "Vận chuyển không thành công") {
+        } else if (savedStatus === "Vận chuyển không thành công") {
           statusBox.classList.add("cancel");
         }
       };
