@@ -94,6 +94,7 @@
       </div>
     </div>
     <script>
+      let isUploaded = false;
       let selectedStatus = "";
       let countdown;
 
@@ -102,65 +103,137 @@
         D01: {
           from: "TP.HCM",
           to: "Hà Nội",
+
           customer: "Công ty TNHH A",
-          phone: "0901111111",
-          goods: "Thiết bị điện tử",
+
+          sender: "Công ty TNHH A",
+          senderPhone: "0901111111",
+
+          receiver: "Nguyễn Văn A",
+          receiverPhone: "0911111111",
+
+          item: "Laptop",
+          weight: "2kg",
+          size: "30x20x5 cm",
         },
 
         D02: {
           from: "Hà Nội",
           to: "Đà Nẵng",
+
           customer: "Nguyễn Văn B",
-          phone: "0902222222",
-          goods: "Hàng tiêu dùng",
+
+          sender: "Nguyễn Văn B",
+          senderPhone: "0902222222",
+
+          receiver: "Trần Văn B",
+          receiverPhone: "0922222222",
+
+          item: "Quần áo",
+          weight: "5kg",
+          size: "40x30x20 cm",
         },
 
         D03: {
           from: "TP.HCM",
           to: "Cần Thơ",
+
           customer: "Công ty xây dựng Số 1",
-          phone: "0903333333",
-          goods: "Vật liệu xây dựng",
+
+          sender: "Công ty xây dựng Số 1",
+          senderPhone: "0903333333",
+
+          receiver: "Phạm Văn C",
+          receiverPhone: "0933333333",
+
+          item: "Xi măng",
+          weight: "50kg",
+          size: "Bao 50kg",
         },
 
         D04: {
           from: "Đà Nẵng",
           to: "Hà Nội",
+
           customer: "Cửa hàng Vật Tư",
-          phone: "0904444444",
-          goods: "Thiết bị công nghiệp",
+
+          sender: "Cửa hàng Vật Tư",
+          senderPhone: "0904444444",
+
+          receiver: "Lê Văn D",
+          receiverPhone: "0944444444",
+
+          item: "Máy khoan",
+          weight: "10kg",
+          size: "35x25x20 cm",
         },
 
         D05: {
           from: "Hồ Chí Minh",
           to: "Hà Nội",
+
           customer: "Công ty Minh Phát",
-          phone: "0905555555",
-          goods: "Linh kiện máy móc",
+
+          sender: "Công ty Minh Phát",
+          senderPhone: "0905555555",
+
+          receiver: "Nguyễn Văn E",
+          receiverPhone: "0955555555",
+
+          item: "Linh kiện máy móc",
+          weight: "3kg",
+          size: "25x20x10 cm",
         },
 
         D06: {
           from: "Đà Nẵng",
           to: "Hồ Chí Minh",
+
           customer: "Shop Điện Tử Hưng Thịnh",
-          phone: "0906666666",
-          goods: "Đồ điện tử",
+
+          sender: "Shop Điện Tử Hưng Thịnh",
+          senderPhone: "0906666666",
+
+          receiver: "Trần Văn F",
+          receiverPhone: "0966666666",
+
+          item: "Tivi",
+          weight: "15kg",
+          size: "100x60x20 cm",
         },
 
         D07: {
           from: "Hà Nội",
           to: "Hải Phòng",
+
           customer: "Kho Tổng Miền Bắc",
-          phone: "0907777777",
-          goods: "Hàng kho vận",
+
+          sender: "Kho Tổng Miền Bắc",
+          senderPhone: "0907777777",
+
+          receiver: "Phạm Văn G",
+          receiverPhone: "0977777777",
+
+          item: "Hàng kho vận",
+          weight: "100kg",
+          size: "1m x 1m x 1m",
         },
 
         D08: {
           from: "Huế",
           to: "Đà Nẵng",
+
           customer: "Cửa hàng Nội Thất An Khang",
-          phone: "0908888888",
-          goods: "Nội thất",
+
+          sender: "Cửa hàng Nội Thất An Khang",
+          senderPhone: "0908888888",
+
+          receiver: "Lê Văn H",
+          receiverPhone: "0988888888",
+
+          item: "Bàn ghế",
+          weight: "30kg",
+          size: "120x60x80 cm",
         },
       };
 
@@ -211,6 +284,8 @@
 
         document.getElementById("uploadBox").style.display = "none";
         document.getElementById("uploadMsg").innerText = "";
+        isUploaded = false;
+        document.getElementById("confirmBtn").disabled = true;
         document.getElementById("statusImage").value = "";
         startCountdown();
       }
@@ -254,14 +329,26 @@
           if (timeLeft <= 0) {
             clearInterval(countdown);
 
-            btn.disabled = false;
-            btn.innerText = "Xác nhận";
+            if (timeLeft <= 0) {
+              clearInterval(countdown);
+
+              btn.innerText = "Xác nhận";
+
+              // 🔥 chỉ mở khi đã upload
+              if (isUploaded) {
+                btn.disabled = false;
+              }
+            }
           }
         }, 1000);
       }
 
       // xác nhận update
       document.getElementById("confirmBtn").onclick = function () {
+        if (!isUploaded) {
+          alert("Bạn phải thêm ảnh xác nhận!");
+          return;
+        }
         if (!selectedStatus) {
           alert("Vui lòng chọn trạng thái!");
           return;
@@ -326,14 +413,26 @@
             '<i class="fa fa-map-marker"></i> ' + order.to;
 
           document.getElementById("customerName").innerHTML =
-            '<i class="fa fa-user"></i> Khách hàng: ' + order.customer;
+            '<i class="fa fa-user"></i> Người gửi: ' + order.sender;
 
           document.getElementById("customerPhone").innerHTML =
-            '<i class="fa fa-phone"></i> ' + order.phone;
+            '<i class="fa fa-phone"></i> SĐT người gửi: ' + order.senderPhone;
 
           document.getElementById("goodsType").innerHTML =
             '<i class="fa fa-box"></i> Loại hàng: ' + order.goods;
+          document.getElementById("customerName").innerHTML +=
+            "<br>👤Người nhận: " + order.receiver;
+
+          document.getElementById("customerPhone").innerHTML +=
+            "<br> 📞SĐT người nhận: " + order.receiverPhone;
         }
+
+        document.getElementById("goodsType").innerHTML = `
+  <i class="fa fa-box"></i> ${order.item} <br>
+  ⚖️ ${order.weight} <br>
+  📦 ${order.size}
+`;
+
         let savedStatus = localStorage.getItem("status_" + id);
 
         // Mặc định demo D01 là Chờ xử lý
@@ -395,8 +494,18 @@
           return;
         }
 
+        // ✅ đúng phải là TRUE
+        isUploaded = true;
+
         document.getElementById("uploadMsg").innerText =
           "✔ Đã thêm ảnh xác nhận";
+
+        // 🔥 mở nút nếu countdown xong
+        const btn = document.getElementById("confirmBtn");
+
+        if (btn.innerText === "Xác nhận") {
+          btn.disabled = false;
+        }
       }
     </script>
   </body>

@@ -770,53 +770,42 @@
         document.getElementById("m_to").innerText = cols[3].innerText;
         document.getElementById("m_status").innerHTML = cols[7].innerHTML;
 
-        // fake data
         let id = cols[0].innerText;
-
         let data = JSON.parse(localStorage.getItem("order_" + id));
-        // 🔥 lấy thời gian tạo
-        let created = localStorage.getItem("createdAt_" + id);
 
-        // 🔥 lấy thời gian cập nhật
+        let created = localStorage.getItem("createdAt_" + id);
         let updated = localStorage.getItem("updatedAt_" + id);
 
-        // gán vào UI
         document.getElementById("m_created").innerText = created || "---";
         document.getElementById("m_updated").innerText = updated || "---";
+
         if (data) {
           document.getElementById("m_sender").innerText = data.sender || "---";
-
           document.getElementById("m_receiver").innerText =
             data.receiver || "---";
-
           document.getElementById("m_sender_phone").innerText =
             data.senderPhone || "---";
-
           document.getElementById("m_receiver_phone").innerText =
             data.receiverPhone || "---";
+
+          // 🔥 PHẦN BỊ LỖI TRƯỚC ĐÓ
+          document.getElementById("m_item").innerText = data.item || "---";
+          document.getElementById("m_weight").innerText = data.weight || "---";
+          document.getElementById("m_size").innerText = data.size || "---";
         } else {
           document.getElementById("m_sender").innerText = "---";
           document.getElementById("m_receiver").innerText = "---";
           document.getElementById("m_sender_phone").innerText = "---";
           document.getElementById("m_receiver_phone").innerText = "---";
         }
-        if (data) {
-          document.getElementById("m_sender_phone").innerText =
-            data.senderPhone || "";
 
-          document.getElementById("m_receiver_phone").innerText =
-            data.receiverPhone || "";
-        }
         document.getElementById("orderModal").style.display = "block";
-        if (!data) {
-          document.getElementById("m_sender_phone").innerText = "---";
-          document.getElementById("m_receiver_phone").innerText = "---";
-        }
-        if (data) {
-          document.getElementById("m_item").innerText = data.item || "---";
-          document.getElementById("m_weight").innerText = data.weight || "---";
-          document.getElementById("m_size").innerText = data.size || "---";
-        }
+      }
+
+      if (data) {
+        document.getElementById("m_item").innerText = data.item || "---";
+        document.getElementById("m_weight").innerText = data.weight || "---";
+        document.getElementById("m_size").innerText = data.size || "---";
       }
     </script>
     <script>
@@ -841,7 +830,98 @@
     </script>
     <script>
       window.onload = function () {
-        // 🔥 PHẢI ĐẶT Ở ĐÂY (trên cùng)
+        // 🔥 INIT DATA HÀNG HÓA CHO D01 → D08
+        if (!localStorage.getItem("order_D01")) {
+          const sampleOrders = {
+            D01: {
+              item: "Laptop",
+              weight: "2",
+              size: "30x20x5 cm",
+              receiver: "Nguyễn Văn A",
+              receiverPhone: "0911111111",
+            },
+
+            D02: {
+              item: "Quần áo",
+              weight: "5",
+              size: "40x30x20 cm",
+              receiver: "Trần Văn B",
+              receiverPhone: "0922222222",
+            },
+
+            D03: {
+              item: "Xi măng",
+              weight: "50",
+              size: "Bao 50kg",
+              receiver: "Phạm Văn C",
+              receiverPhone: "0933333333",
+            },
+
+            D04: {
+              item: "Máy khoan",
+              weight: "10",
+              size: "35x25x20 cm",
+              receiver: "Lê Văn D",
+              receiverPhone: "0944444444",
+            },
+
+            D05: {
+              item: "Linh kiện",
+              weight: "3",
+              size: "25x20x10 cm",
+              receiver: "Nguyễn Văn E",
+              receiverPhone: "0955555555",
+            },
+
+            D06: {
+              item: "Tivi",
+              weight: "15",
+              size: "100x60x20 cm",
+              receiver: "Trần Văn F",
+              receiverPhone: "0966666666",
+            },
+
+            D07: {
+              item: "Hàng kho",
+              weight: "100",
+              size: "1m x 1m",
+              receiver: "Phạm Văn G",
+              receiverPhone: "0977777777",
+            },
+
+            D08: {
+              item: "Bàn ghế",
+              weight: "30",
+              size: "120x60x80 cm",
+              receiver: "Lê Văn H",
+              receiverPhone: "0988888888",
+            },
+          };
+
+          Object.keys(sampleOrders).forEach((id) => {
+            // 🔥 tìm dòng trong bảng
+            let row = Array.from(document.querySelectorAll("table tr")).find(
+              (r) => r.children[0]?.innerText === id
+            );
+
+            let customer = row ? row.children[1].innerText : "---";
+
+            localStorage.setItem(
+              "order_" + id,
+              JSON.stringify({
+                sender: customer, // ✅ FIX
+                senderPhone: "0900000000",
+
+                receiver: sampleOrders[id].receiver,
+                receiverPhone: sampleOrders[id].receiverPhone,
+
+                item: sampleOrders[id].item,
+                weight: sampleOrders[id].weight,
+                size: sampleOrders[id].size,
+              })
+            );
+          });
+        }
         let customers = JSON.parse(localStorage.getItem("customers") || "[]");
 
         if (customers.length === 0) {
