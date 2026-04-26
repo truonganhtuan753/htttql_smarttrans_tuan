@@ -542,6 +542,12 @@
           <p><b>Trạng thái:</b> <span id="m_status"></span></p>
           <p><b>Thời gian tạo:</b> <span id="m_created"></span></p>
           <p><b>Cập nhật lần cuối:</b> <span id="m_updated"></span></p>
+
+          <hr />
+
+          <p><b>Tên hàng:</b> <span id="m_item"></span></p>
+          <p><b>Cân nặng:</b> <span id="m_weight"></span></p>
+          <p><b>Kích thước:</b> <span id="m_size"></span></p>
         </div>
       </div>
     </div>
@@ -805,6 +811,11 @@
         if (!data) {
           document.getElementById("m_sender_phone").innerText = "---";
           document.getElementById("m_receiver_phone").innerText = "---";
+        }
+        if (data) {
+          document.getElementById("m_item").innerText = data.item || "---";
+          document.getElementById("m_weight").innerText = data.weight || "---";
+          document.getElementById("m_size").innerText = data.size || "---";
         }
       }
     </script>
@@ -1180,12 +1191,19 @@
         let receiverPhone = document
           .getElementById("a_receiver_phone")
           .value.trim();
-
+        let item = document.getElementById("a_item").value.trim();
+        let weight = document.getElementById("a_weight").value.trim();
+        let size = document.getElementById("a_size").value.trim();
         if (!customer || customer === "Khách mới") {
           customer = sender;
         }
 
         // validate
+        if (!item) return alert("Thiếu tên hàng");
+        if (!weight) return alert("Thiếu cân nặng");
+        if (isNaN(weight) || Number(weight) <= 0) {
+          return alert("Cân nặng phải là số > 0");
+        }
         if (!from) return alert("Thiếu điểm gửi");
         if (!to) return alert("Thiếu điểm nhận");
         if (!sender) return alert("Thiếu người gửi");
@@ -1248,6 +1266,9 @@
             senderPhone,
             receiverPhone,
             driver: driverId,
+            item,
+            weight,
+            size,
           })
         );
 
@@ -1296,6 +1317,15 @@
 
           <label>SĐT người nhận:</label>
           <input type="text" id="a_receiver_phone" />
+
+          <label>Tên hàng:</label>
+          <input type="text" id="a_item" />
+
+          <label>Cân nặng (kg):</label>
+          <input type="number" id="a_weight" />
+
+          <label>Kích thước (DxRxC):</label>
+          <input type="text" id="a_size" placeholder="VD: 30x20x10 cm" />
 
           <button class="save-btn" onclick="addOrder()">Tạo</button>
         </div>
