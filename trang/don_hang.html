@@ -626,31 +626,33 @@
         document.getElementById("e_to").value = cols[3].innerText;
         let select = document.getElementById("e_status");
 
-        // 🎯 RESET OPTION
         select.innerHTML = "";
-
-        // 🎯 LỌC OPTION THEO TRẠNG THÁI
 
         if (status === "Chờ xử lý") {
           select.innerHTML = `
-      <option>Chờ xử lý</option>
-      <option>Đã hủy</option>
-    `;
-        }
-
-        if (status === "Đang vận chuyển") {
+    <option>Chờ xử lý</option>
+    <option>Đã hủy</option>
+  `;
+        } else if (status === "Đã nhận đơn") {
+          select.innerHTML = `
+    <option>Đã nhận đơn</option>
+    <option>Đã hủy</option>
+  `;
+        } else if (status === "Đang vận chuyển") {
           select.innerHTML = `
     <option>Đang vận chuyển</option>
     <option>Đã hủy</option>
   `;
-        }
-
-        // 🔥 THÊM ĐOẠN NÀY
-        if (status === "Vận chuyển không thành công") {
+        } else if (status === "Vận chuyển không thành công") {
           select.innerHTML = `
     <option>Vận chuyển không thành công</option>
     <option>Đang vận chuyển</option>
     <option>Đã hủy</option>
+  `;
+        } else {
+          // 🔥 QUAN TRỌNG: fallback
+          select.innerHTML = `
+    <option>${status}</option>
   `;
         }
 
@@ -800,12 +802,6 @@
         }
 
         document.getElementById("orderModal").style.display = "block";
-      }
-
-      if (data) {
-        document.getElementById("m_item").innerText = data.item || "---";
-        document.getElementById("m_weight").innerText = data.weight || "---";
-        document.getElementById("m_size").innerText = data.size || "---";
       }
     </script>
     <script>
@@ -1125,7 +1121,7 @@
             if (index === 0) return; // bỏ header
 
             const status = row
-              .querySelector("td:nth-child(7)")
+              .querySelector("td:nth-child(8)")
               .innerText.toLowerCase();
 
             if (selected === "tất cả") {
