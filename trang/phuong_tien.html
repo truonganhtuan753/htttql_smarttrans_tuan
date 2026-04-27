@@ -599,6 +599,7 @@
 
         if (active === "Xe") {
           document.getElementById("modal").style.display = "block";
+          document.getElementById("modalTitle").innerText = "Thêm phương tiện";
         } else {
           openDriverModal();
         }
@@ -660,7 +661,7 @@
           let cols = row.querySelectorAll("td");
 
           document.getElementById("modal").style.display = "block";
-
+          document.getElementById("modalTitle").innerText = "Sửa phương tiện";
           document.getElementById("f_id").value = cols[0].innerText;
           document.getElementById("f1").value = cols[1].innerText;
           document.getElementById("f2").value = cols[2].innerText;
@@ -881,6 +882,7 @@
             let cols = row.querySelectorAll("td");
 
             document.getElementById("modal").style.display = "block";
+            document.getElementById("modalTitle").innerText = "Sửa phương tiện";
 
             document.getElementById("f_id").value = cols[0].innerText;
             document.getElementById("f1").value = cols[1].innerText;
