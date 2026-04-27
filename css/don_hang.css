@@ -244,17 +244,20 @@ body {
   background: rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
+  overflow-y: auto;
 }
 
 .modal-content {
+  position: relative;
   background: white;
   width: 400px;
-  margin: 100px auto;
+  margin: 12vh auto;
   padding: 20px;
   border-radius: 12px;
-  max-height: 90vh;
+  max-height: 150vh;
   overflow-y: auto;
 }
+
 .modal-content {
   overflow: visible;
 }
