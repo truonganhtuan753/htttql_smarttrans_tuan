@@ -267,10 +267,10 @@
 
         options.forEach((status) => {
           html += `
-    <div class="option" onclick="selectStatus('${status}', this)">
-      ${status}
-    </div>
-  `;
+          <div class="option" onclick="selectStatus('${status}', this)">
+            ${status}
+          </div>
+        `;
         });
 
         // nếu hết trạng thái
@@ -397,20 +397,23 @@
       window.onload = function () {
         const params = new URLSearchParams(window.location.search);
         const id = params.get("id");
-        let time = localStorage.getItem("updatedAt_" + id);
 
-        if (time) {
-          document.getElementById("updateTime").innerText = "Cập nhật: " + time;
+        // 🔥 LẤY TỪ localStorage
+        let order = JSON.parse(localStorage.getItem("order_" + id));
+
+        // fallback nếu chưa có
+        if (!order) {
+          order = ordersData[id];
         }
-        document.getElementById("orderIdText").innerText = "Mã đơn: " + id;
-        const order = ordersData[id];
 
         if (order) {
           document.getElementById("fromLocation").innerHTML =
-            '<i class="fa fa-map-marker-alt"></i> ' + order.from;
+            '<i class="fa fa-map-marker-alt"></i> ' +
+            (order.from || ordersData[id]?.from || "---");
 
           document.getElementById("toLocation").innerHTML =
-            '<i class="fa fa-map-marker"></i> ' + order.to;
+            '<i class="fa fa-map-marker"></i> ' +
+            (order.to || ordersData[id]?.to || "---");
 
           document.getElementById("customerName").innerHTML =
             '<i class="fa fa-user"></i> Người gửi: ' + order.sender;
@@ -418,21 +421,18 @@
           document.getElementById("customerPhone").innerHTML =
             '<i class="fa fa-phone"></i> SĐT người gửi: ' + order.senderPhone;
 
-          document.getElementById("goodsType").innerHTML =
-            '<i class="fa fa-box"></i> Loại hàng: ' + order.goods;
           document.getElementById("customerName").innerHTML +=
-            "<br>👤Người nhận: " + order.receiver;
+            "<br>👤 Người nhận: " + order.receiver;
 
           document.getElementById("customerPhone").innerHTML +=
-            "<br> 📞SĐT người nhận: " + order.receiverPhone;
+            "<br>📞 SĐT người nhận: " + order.receiverPhone;
+
+          document.getElementById("goodsType").innerHTML = `
+          <i class="fa fa-box"></i> ${order.item} <br>
+          ⚖️ ${order.weight} <br>
+          📦 ${order.size}
+        `;
         }
-
-        document.getElementById("goodsType").innerHTML = `
-  <i class="fa fa-box"></i> ${order.item} <br>
-  ⚖️ ${order.weight} <br>
-  📦 ${order.size}
-`;
-
         let savedStatus = localStorage.getItem("status_" + id);
 
         // Mặc định demo D01 là Chờ xử lý

@@ -822,7 +822,8 @@
             let cols = row.querySelectorAll("td");
 
             document.getElementById("driverModal").style.display = "block";
-
+            document.getElementById("driverModalTitle").innerText =
+              "Sửa tài xế";
             document.getElementById("d_id").value = cols[0].innerText;
             document.getElementById("d_name").value = cols[1].innerText;
             document.getElementById("d_phone").value = cols[2].innerText;

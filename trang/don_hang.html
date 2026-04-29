@@ -609,15 +609,26 @@
         let cols = row.querySelectorAll("td");
 
         let status = cols[7].innerText.trim();
+        let isLocked =
+          status === "Đang vận chuyển" ||
+          status === "Đã giao hàng" ||
+          status === "Hoàn thành";
 
-        // ❌ KHÔNG CHO SỬA TRẠNG THÁI CUỐI
-        if (
-          status === "Đã hủy" ||
-          status === "Hoàn thành" ||
-          status === "Đã giao hàng"
-        ) {
-          alert("Không thể chỉnh sửa đơn đã kết thúc!");
-          return;
+        // 🔥 disable input
+        // 🔥 chỉ khóa điểm nhận
+        document.getElementById("e_to").disabled = isLocked;
+
+        // 🔥 vẫn cho sửa 2 cái này
+        document.getElementById("e_receiver").disabled = false;
+        document.getElementById("e_phone").disabled = false;
+
+        let id = cols[0].innerText;
+        let data = JSON.parse(localStorage.getItem("order_" + id) || "{}");
+
+        if (data) {
+          document.getElementById("e_receiver").value =
+            data.receiver || cols[1].innerText;
+          document.getElementById("e_phone").value = data.receiverPhone || "";
         }
 
         currentRow = row;
@@ -669,6 +680,8 @@
       function saveEdit() {
         let cols = currentRow.querySelectorAll("td");
         let newStatus = document.getElementById("e_status").value;
+        let status = cols[7].innerText.trim();
+
         // 🔥 nếu hoàn thành → trả tài xế về available
         if (
           newStatus === "Hoàn thành" ||
@@ -727,14 +740,13 @@
           localStorage.setItem("notifications", JSON.stringify(notis));
         }
 
-        // 🚫 phân quyền
-        if (newStatus === "Đang vận chuyển") {
-          alert("Chỉ shipper mới được xác nhận nhận hàng!");
+        if (newStatus !== status && newStatus === "Đang vận chuyển") {
+          alert("Chỉ tài xế mới được xác nhận nhận hàng!");
           return;
         }
 
         if (newStatus === "Đã giao hàng" || newStatus === "Hoàn thành") {
-          alert("Chỉ shipper mới được cập nhật trạng thái này!");
+          alert("Chỉ tài xế mới được cập nhật trạng thái này!");
           return;
         }
 
@@ -742,7 +754,31 @@
         localStorage.setItem("updatedBy_" + orderId, "Điều phối");
         let newTo = document.getElementById("e_to").value;
 
+        // 🔥 nếu đang vận chuyển → không cho đổi điểm nhận
+        if (
+          status === "Đang vận chuyển" ||
+          status === "Đã giao hàng" ||
+          status === "Hoàn thành"
+        ) {
+          newTo = cols[3].innerText; // giữ nguyên giá trị cũ
+        }
+
         cols[3].innerText = newTo;
+
+        let old = JSON.parse(localStorage.getItem("order_" + orderId)) || {};
+
+        localStorage.setItem(
+          "order_" + orderId,
+          JSON.stringify({
+            ...old,
+
+            from: cols[2].innerText,
+            to: newTo,
+
+            receiver: document.getElementById("e_receiver").value,
+            receiverPhone: document.getElementById("e_phone").value,
+          })
+        );
         let className = getStatusClass(newStatus);
 
         cols[7].innerHTML = `<span class="status ${className}">${newStatus}</span>`;
@@ -766,14 +802,20 @@
         let row = icon.closest("tr");
         let cols = row.querySelectorAll("td");
 
-        document.getElementById("m_id").innerText = cols[0].innerText;
-        document.getElementById("m_customer").innerText = cols[1].innerText;
-        document.getElementById("m_from").innerText = cols[2].innerText;
-        document.getElementById("m_to").innerText = cols[3].innerText;
-        document.getElementById("m_status").innerHTML = cols[7].innerHTML;
+        let id = cols[0].innerText; // 🔥 PHẢI ĐẶT LÊN TRƯỚC
 
-        let id = cols[0].innerText;
-        let data = JSON.parse(localStorage.getItem("order_" + id));
+        let data = JSON.parse(localStorage.getItem("order_" + id)) || {};
+
+        document.getElementById("m_id").innerText = id;
+        document.getElementById("m_customer").innerText = cols[1].innerText;
+
+        document.getElementById("m_from").innerText =
+          data.from || cols[2].innerText;
+
+        document.getElementById("m_to").innerText =
+          data.to || cols[3].innerText;
+
+        document.getElementById("m_status").innerHTML = cols[7].innerHTML;
 
         let created = localStorage.getItem("createdAt_" + id);
         let updated = localStorage.getItem("updatedAt_" + id);
@@ -781,25 +823,17 @@
         document.getElementById("m_created").innerText = created || "---";
         document.getElementById("m_updated").innerText = updated || "---";
 
-        if (data) {
-          document.getElementById("m_sender").innerText = data.sender || "---";
-          document.getElementById("m_receiver").innerText =
-            data.receiver || "---";
-          document.getElementById("m_sender_phone").innerText =
-            data.senderPhone || "---";
-          document.getElementById("m_receiver_phone").innerText =
-            data.receiverPhone || "---";
+        document.getElementById("m_sender").innerText = data.sender || "---";
+        document.getElementById("m_receiver").innerText =
+          data.receiver || "---";
+        document.getElementById("m_sender_phone").innerText =
+          data.senderPhone || "---";
+        document.getElementById("m_receiver_phone").innerText =
+          data.receiverPhone || "---";
 
-          // 🔥 PHẦN BỊ LỖI TRƯỚC ĐÓ
-          document.getElementById("m_item").innerText = data.item || "---";
-          document.getElementById("m_weight").innerText = data.weight || "---";
-          document.getElementById("m_size").innerText = data.size || "---";
-        } else {
-          document.getElementById("m_sender").innerText = "---";
-          document.getElementById("m_receiver").innerText = "---";
-          document.getElementById("m_sender_phone").innerText = "---";
-          document.getElementById("m_receiver_phone").innerText = "---";
-        }
+        document.getElementById("m_item").innerText = data.item || "---";
+        document.getElementById("m_weight").innerText = data.weight || "---";
+        document.getElementById("m_size").innerText = data.size || "---";
 
         document.getElementById("orderModal").style.display = "block";
       }
@@ -902,10 +936,14 @@
 
             let customer = row ? row.children[1].innerText : "---";
 
+            let old = JSON.parse(localStorage.getItem("order_" + id)) || {};
+
             localStorage.setItem(
               "order_" + id,
               JSON.stringify({
-                sender: customer, // ✅ FIX
+                ...old,
+
+                sender: customer,
                 senderPhone: "0900000000",
 
                 receiver: sampleOrders[id].receiver,
@@ -914,6 +952,9 @@
                 item: sampleOrders[id].item,
                 weight: sampleOrders[id].weight,
                 size: sampleOrders[id].size,
+
+                from: row.children[2].innerText,
+                to: row.children[3].innerText,
               })
             );
           });
@@ -1333,9 +1374,13 @@
     </td>
   `;
 
+        let old = JSON.parse(localStorage.getItem("order_" + id)) || {};
+
         localStorage.setItem(
           "order_" + id,
           JSON.stringify({
+            ...old,
+
             customer,
             sender,
             receiver,
@@ -1345,6 +1390,10 @@
             item,
             weight,
             size,
+
+            // 🔥 QUAN TRỌNG
+            from,
+            to,
           })
         );
 

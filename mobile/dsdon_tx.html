@@ -202,27 +202,40 @@
       }
 
       window.onload = function () {
-        updateBadge();
         document.querySelectorAll(".order-card").forEach((card) => {
           let id = card.dataset.id;
 
-          let savedStatus = localStorage.getItem("status_" + id);
+          let locationEl = card.querySelector("p:nth-child(3)");
+          let text = locationEl.innerText;
 
-          if (savedStatus) {
-            let statusEl = card.querySelector(".status");
-            let btn = card.querySelector(".btn");
+          // 🔥 nếu chưa có thì tạo
+          if (!localStorage.getItem("order_" + id)) {
+            let parts = text.split("→");
 
-            let icon = getStatusIcon(savedStatus);
-
-            statusEl.innerHTML = `<i class="fa ${icon}"></i> ${savedStatus}`;
-            statusEl.className = "status " + getStatusClass(savedStatus);
-            btn.className = "btn " + getButtonClass(savedStatus) + " animate";
-
-            setTimeout(() => {
-              btn.classList.remove("animate");
-            }, 300);
+            localStorage.setItem(
+              "order_" + id,
+              JSON.stringify({
+                from: parts[0].trim(),
+                to: parts[1].trim(),
+              })
+            );
           }
         });
+        document.querySelectorAll(".order-card").forEach((card) => {
+          let id = card.dataset.id;
+
+          let data = JSON.parse(localStorage.getItem("order_" + id));
+
+          let locationEl = card.querySelector("p:nth-child(3)");
+
+          if (data && locationEl) {
+            let from = data.from || "";
+            let to = data.to || "";
+
+            locationEl.innerText = from + " → " + to;
+          }
+        });
+        updateBadge();
       };
     </script>
     <script>
